@@ -1,4 +1,4 @@
-package HW01;
+package hw;
 
 public class Application {
 

@@ -1,4 +1,4 @@
-package HW01;
+package hw;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.*;
