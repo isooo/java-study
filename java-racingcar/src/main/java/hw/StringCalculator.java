@@ -4,17 +4,25 @@ import java.util.*;
 
 public class StringCalculator {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        final String input = sc.nextLine();
-        final Calculator calculator = new Calculator();
-        final int result = calculator.excute(input);
-        System.out.println("result : " + result);
+        try {
+            Scanner sc = new Scanner(System.in);
+            final String input = sc.nextLine();
+            final Calculator calculator = new Calculator();
+            final int result = calculator.excute(input);
+            System.out.println("result : " + result);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 }
 
 class Calculator {
+    private static final String WHITE_SPACE = " ";
     public int excute(String input) {
-        final String[] arr = input.split(" ");
+        if (OperationUtils.isEmpty(input)) {
+            throw new IllegalArgumentException();
+        }
+        final String[] arr = input.split(WHITE_SPACE);
         String a = arr[0];
         final Operation operation = new Operation();
         for (int i = 1; i < arr.length; i += 2) {
@@ -33,8 +41,8 @@ class Operation {
     private static final String DIVIDE = "/";
 
     public String execute(String a, String op, String b) {
-        final int x = Integer.parseInt(a);
-        final int y = Integer.parseInt(b);
+        final int x = OperationUtils.parseInt(a);
+        final int y = OperationUtils.parseInt(b);
         final int result = execute(x, op, y);
         return String.valueOf(result);
     }
@@ -53,5 +61,18 @@ class Operation {
             return a / b;
         }
         throw new IllegalArgumentException("유효하지 않은 연산자입니다.");
+    }
+}
+
+class OperationUtils {
+    public static int parseInt(String s) {
+        if (!isEmpty(s)) {
+            throw new IllegalArgumentException("유효하지 않은 인수입니다.");
+        }
+        return Integer.parseInt(s);
+    }
+
+    public static boolean isEmpty(String s) {
+        return s == null || s.trim().length() == 0;
     }
 }
