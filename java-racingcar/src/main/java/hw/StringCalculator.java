@@ -66,7 +66,7 @@ class Operation {
 
 class OperationUtils {
     public static int parseInt(String s) {
-        if (!isEmpty(s)) {
+        if (isEmpty(s)) {
             throw new IllegalArgumentException("유효하지 않은 인수입니다.");
         }
         return Integer.parseInt(s);
