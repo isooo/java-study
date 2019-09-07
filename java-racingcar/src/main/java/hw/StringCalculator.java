@@ -1,11 +1,12 @@
 package hw;
 
 import java.util.*;
+import java.util.function.*;
 
 public class StringCalculator {
     public static void main(String[] args) {
         try {
-            Scanner sc = new Scanner(System.in);
+            final Scanner sc = new Scanner(System.in);
             final String input = sc.nextLine();
             final Calculator calculator = new Calculator();
             final int result = calculator.execute(input);
@@ -19,73 +20,65 @@ public class StringCalculator {
 class Calculator {
     private static final String WHITE_SPACE = " ";
 
-    public int execute(String input) {
+    public int execute(final String input) {
         if (OperationUtils.isEmpty(input)) {
             throw new IllegalArgumentException();
         }
         final String[] arr = input.split(WHITE_SPACE);
-        int a = OperationUtils.parseInt(arr[0]);
+        int result = OperationUtils.parseInt(arr[0]);
         for (int i = 1; i < arr.length; i += 2) {
-            String op = arr[i];
-            int b = OperationUtils.parseInt(arr[i + 1]);
-            a = Operation.operate(a, op, b);
+            final int var = OperationUtils.parseInt(arr[i + 1]);
+            result = Operation.operate(result, arr[i], var);
         }
-        return a;
+        return result;
     }
 }
 
 enum Operation {
-    ADD("+") {
-        int operate(int a, int b) {
-            return a + b;
-        }
-    },
-    SUBTRACT("-") {
-        int operate(int a, int b) {
-            return a - b;
-        }
-    },
-    MULTIPLY("*") {
-        int operate(int a, int b) {
-            return a * b;
-        }
-    },
-    DIVIDE("/") {
-        int operate(int a, int b) {
-            return a / b;
-        }
-    };
+    ADD("+", (left, right) -> left + right),
+    SUBTRACT("-", (left, right) -> left - right),
+    MULTIPLY("*", (left, right) -> left * right),
+    DIVIDE("/", (left, right) -> left / right);
 
     private final String symbol;
+    private final BinaryOperator<Integer> execute;
 
-    abstract int operate(int a, int b);
-
-    Operation(String symbol) {
+    Operation(final String symbol, final BinaryOperator<Integer> execute) {
         this.symbol = symbol;
+        this.execute = execute;
     }
 
-    public boolean isSameSymbol(String op) {
+    public boolean isSameSymbol(final String op) {
         return this.symbol.equals(op);
     }
 
-    public static int operate(int a, String s, int b) {
-        final Operation operation = Arrays.stream(Operation.values())
-                .filter(op -> op.isSameSymbol(s))
+    private int execute(final int left, final int right) {
+        return execute.apply(left, right);
+    }
+
+    private static Operation from(final String op) {
+        return Arrays.stream(Operation.values())
+                .filter(o -> o.isSameSymbol(op))
                 .findAny()
-                .orElseThrow(IllegalArgumentException::new);
-        return operation.operate(a, b);
+                .orElseThrow(IllegalArgumentException::new)
+                ;
+    }
+
+    public static int operate(final int left, final String op, final int right) {
+        final Operation operation = from(op);
+        return operation.execute(left, right);
     }
 }
 
 class OperationUtils {
-    public static int parseInt(String s) {
+    public static int parseInt(final String s) {
         if (isEmpty(s)) {
             throw new IllegalArgumentException("유효하지 않은 인수입니다.");
         }
         return Integer.parseInt(s);
     }
 
-    public static boolean isEmpty(String s) {
+    public static boolean isEmpty(final String s) {
         return s == null || s.trim().length() == 0;
     }
 }
