@@ -8,7 +8,7 @@ public class StringCalculator {
             Scanner sc = new Scanner(System.in);
             final String input = sc.nextLine();
             final Calculator calculator = new Calculator();
-            final int result = calculator.excute(input);
+            final int result = calculator.execute(input);
             System.out.println("result : " + result);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
@@ -18,7 +18,7 @@ public class StringCalculator {
 
 class Calculator {
     private static final String WHITE_SPACE = " ";
-    public int excute(String input) {
+    public int execute(String input) {
         if (OperationUtils.isEmpty(input)) {
             throw new IllegalArgumentException();
         }

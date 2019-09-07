@@ -21,7 +21,7 @@ class CalculatorTest {
     void 계산_성공_테스트(String s) {
         // given
         // when
-        final int result = calculator.excute(s);
+        final int result = calculator.execute(s);
 
         // then
         assertThat(result).isIn(9, 2, 10);
@@ -34,7 +34,7 @@ class CalculatorTest {
         // when
         // then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> calculator.excute(s)
+                () -> calculator.execute(s)
         );
     }
 }
