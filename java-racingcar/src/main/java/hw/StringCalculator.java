@@ -28,35 +28,37 @@ class Calculator {
         for (int i = 1; i < arr.length; i += 2) {
             String op = arr[i];
             int b = OperationUtils.parseInt(arr[i + 1]);
-            a = execute(a, op, b);
+            a = Operation.operate(a, op, b);
         }
         return a;
-    }
-
-    private int execute(int a, String op, int b) {
-        if (Operation.ADD.isSameSymbol(op)) {
-            return a + b;
-        }
-        if (Operation.SUBTRACT.isSameSymbol(op)) {
-            return a - b;
-        }
-        if (Operation.MULTIPLY.isSameSymbol(op)) {
-            return a * b;
-        }
-        if (Operation.DIVIDE.isSameSymbol(op)) {
-            return a / b;
-        }
-        throw new IllegalArgumentException("유효하지 않은 연산자입니다.");
     }
 }
 
 enum Operation {
-    ADD("+"),
-    SUBTRACT("-"),
-    MULTIPLY("*"),
-    DIVIDE("/");
+    ADD("+") {
+        int operate(int a, int b) {
+            return a + b;
+        }
+    },
+    SUBTRACT("-") {
+        int operate(int a, int b) {
+            return a - b;
+        }
+    },
+    MULTIPLY("*") {
+        int operate(int a, int b) {
+            return a * b;
+        }
+    },
+    DIVIDE("/") {
+        int operate(int a, int b) {
+            return a / b;
+        }
+    };
 
     private final String symbol;
+
+    abstract int operate(int a, int b);
 
     Operation(String symbol) {
         this.symbol = symbol;
@@ -64,6 +66,14 @@ enum Operation {
 
     public boolean isSameSymbol(String op) {
         return this.symbol.equals(op);
+    }
+
+    public static int operate(int a, String s, int b) {
+        final Operation operation = Arrays.stream(Operation.values())
+                .filter(op -> op.isSameSymbol(s))
+                .findAny()
+                .orElseThrow(IllegalArgumentException::new);
+        return operation.operate(a, b);
     }
 }
 
