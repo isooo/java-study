@@ -7,7 +7,7 @@ public class RacingCarController {
         final String car = InputView.getCarCount();
         final String track = InputView.getTrackCount();
         RacingCarService service = new RacingCarService();
-        final StringBuilder sb = service.play(car, track);
-        ResultView.getView(sb);
+        final ResultView resultView = service.start(car, track);
+        resultView.getResult();
     }
 }
