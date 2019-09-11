@@ -9,14 +9,19 @@ public class Cars {
         this.cars = new ArrayList<>();
     }
 
+    public Cars(List<Car> cars) {
+        this.cars = cars;
+    }
+
     public List<Car> getCars() {
         return cars;
     }
 
-    public void createCars(final int numberOfCars) {
+    public Cars registerCars(final int numberOfCars) {
         for (int i = 0; i < numberOfCars; i++) {
             this.cars.add(new Car());
         }
+        return new Cars(Collections.unmodifiableList(this.cars));
     }
 
     public int getCount() {
