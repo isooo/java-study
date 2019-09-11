@@ -9,11 +9,11 @@ public class Cars {
         this.cars = new ArrayList<>();
     }
 
-    public Cars(List<Car> cars) {
+    public Cars(final List<Car> cars) {
         this.cars = cars;
     }
 
-    public List<Car> getCars() {
+    public List<Car> getCarList() {
         return cars;
     }
 

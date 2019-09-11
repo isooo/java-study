@@ -11,7 +11,7 @@ public class ResultView {
 
     public void record(final Cars cars) {
         for (int i = 0; i < cars.getCount(); i++) {
-            final Car car = cars.getCars().get(i);
+            final Car car = cars.getCarList().get(i);
             for (int j = 0; j < car.getPosition(); j++) {
                 this.sb.append("-");
             }

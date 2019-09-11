@@ -13,6 +13,10 @@ public class Car {
         this.position = 0;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public int getPosition() {
         return position;
     }

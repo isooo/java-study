@@ -11,6 +11,10 @@ public class RacingGame {
         this.totalTrack = totalTrack;
     }
 
+    public Cars getCars() {
+        return cars;
+    }
+
     private Cars registerCars(final int numberOfCars) {
         final Cars cars = new Cars();
         return cars.registerCars(numberOfCars);
