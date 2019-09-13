@@ -3,6 +3,8 @@ package racingcar.domain;
 import java.util.*;
 
 public class Car {
+    private static final int RANDOM_BOUND = 10;
+    private static final int NUMBER_CONDITION_TO_MOVE = 4;
     private static Long ID = 1L;
 
     private Long id;
@@ -29,6 +31,6 @@ public class Car {
     }
 
     private boolean isMove() {
-        return new Random().nextInt(10) >= 4;
+        return new Random().nextInt(RANDOM_BOUND) >= NUMBER_CONDITION_TO_MOVE;
     }
 }
