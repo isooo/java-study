@@ -18,7 +18,7 @@ public class Cars {
         return cars;
     }
 
-    public Cars registerCars(final int numberOfCars) {
+    public static Cars registerCars(final int numberOfCars) {
         final List<Car> carList = LongStream.rangeClosed(1, numberOfCars)
                 .mapToObj(i -> new Car(i))
                 .collect(Collectors.toList());

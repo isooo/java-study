@@ -7,17 +7,12 @@ public class RacingGame {
     private int totalTrack;
 
     public RacingGame(final int numberOfCars, final int totalTrack) {
-        this.cars = registerCars(numberOfCars);
+        this.cars = Cars.registerCars(numberOfCars);
         this.totalTrack = totalTrack;
     }
 
     public Cars getCars() {
         return cars;
-    }
-
-    private Cars registerCars(final int numberOfCars) {
-        final Cars cars = new Cars();
-        return cars.registerCars(numberOfCars);
     }
 
     public ResultView start() {
