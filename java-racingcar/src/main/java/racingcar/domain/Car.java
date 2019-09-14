@@ -1,17 +1,18 @@
 package racingcar.domain;
 
 import java.util.*;
+import java.util.concurrent.atomic.*;
 
 public class Car {
+    private static AtomicLong AUTOINCREMENT_ID = new AtomicLong(1);
     private static final int RANDOM_BOUND = 10;
     private static final int NUMBER_CONDITION_TO_MOVE = 4;
-    private static Long ID = 1L;
 
     private Long id;
     private int position;
 
     public Car() {
-        this.id = ID++;
+        this.id = AUTOINCREMENT_ID.getAndIncrement();
         this.position = 0;
     }
 
