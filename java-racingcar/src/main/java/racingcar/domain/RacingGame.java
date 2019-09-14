@@ -7,7 +7,7 @@ public class RacingGame {
     private int totalTrack;
 
     public RacingGame(final int numberOfCars, final int totalTrack) {
-        this.cars = Cars.registerCars(numberOfCars);
+        this.cars = new Cars(numberOfCars);
         this.totalTrack = totalTrack;
     }
 

@@ -12,24 +12,20 @@ class CarsTest {
     @Test
     void 자동차_1대_등록_테스트() {
         // given
-        final Cars cars = new Cars();
-
         // when
-        final Cars registeredCars = cars.registerCars(1);
+        final Cars cars = new Cars(1);
 
         // then
-        assertThat(registeredCars.getCount())
+        assertThat(cars.getCount())
                 .isEqualTo(1);
     }
 
     @Test
     void 자동차_5대_등록_테스트() {
         // given
-        final Cars cars = new Cars();
-
         // when
-        final Cars registeredCars = cars.registerCars(5);
-        final List<Long> idList = registeredCars.getCarList()
+        final Cars cars = new Cars(5);
+        final List<Long> idList = cars.getCarList()
                 .stream()
                 .map(car -> car.getId())
                 .collect(Collectors.toList());
@@ -42,14 +38,13 @@ class CarsTest {
     @Test
     void 자동차_1대_1회_레이싱_테스트() {
         // given
-        final Cars cars = new Cars();
 
         // when
-        final Cars registeredCars = cars.registerCars(1);
-        registeredCars.race();
+        final Cars cars = new Cars(1);
+        cars.race();
 
         // then
-        assertThat(registeredCars.getCarList().get(0).getPosition())
+        assertThat(cars.getCarList().get(0).getPosition())
                 .isLessThanOrEqualTo(1);
     }
 }

@@ -6,23 +6,18 @@ import java.util.stream.*;
 public class Cars {
     private List<Car> cars;
 
-    public Cars() {
-        this.cars = new ArrayList<>();
-    }
-
-    private Cars(final List<Car> cars) {
-        this.cars = cars;
+    public Cars(final int numberOfCars) {
+        this.cars = registerCars(numberOfCars);
     }
 
     public List<Car> getCarList() {
         return cars;
     }
 
-    public static Cars registerCars(final int numberOfCars) {
-        final List<Car> carList = LongStream.rangeClosed(1, numberOfCars)
+    public List<Car> registerCars(final int numberOfCars) {
+        return LongStream.rangeClosed(1, numberOfCars)
                 .mapToObj(i -> new Car(i))
                 .collect(Collectors.toList());
-        return new Cars(Collections.unmodifiableList(carList));
     }
 
     public int getCount() {
