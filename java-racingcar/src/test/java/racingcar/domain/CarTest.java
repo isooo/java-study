@@ -10,7 +10,7 @@ class CarTest {
     void 자동차_생성시_Id_부여_테스트() {
         // given
         // when
-        final Car car = new Car();
+        final Car car = new Car(1L);
 
         // then
         assertThat(car.getId()).isEqualTo(1);
@@ -19,7 +19,7 @@ class CarTest {
     @Test
     void 자동차_move_테스트_1회() {
         // given
-        final Car car = new Car();
+        final Car car = new Car(1L);
 
         // when
         car.move();
@@ -31,7 +31,7 @@ class CarTest {
     @Test
     void 자동차_move_테스트_5회() {
         // given
-        final Car car = new Car();
+        final Car car = new Car(1L);
 
         // when
         for (int i = 0; i < 5; i++) {
