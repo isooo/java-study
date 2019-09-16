@@ -3,24 +3,21 @@ package racingcar.ui;
 import racingcar.domain.*;
 
 public class ResultView {
-    private StringBuilder sb;
-
-    public ResultView() {
-        this.sb = new StringBuilder();
-    }
-
-    public void record(final Cars cars) {
+    private static StringBuilder record(final Cars cars) {
+        final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < cars.getCount(); i++) {
             final Car car = cars.getCarList().get(i);
             for (int j = 0; j < car.getPosition(); j++) {
-                this.sb.append("-");
+                sb.append("-");
             }
-            this.sb.append("\n");
+            sb.append("\n");
         }
-        this.sb.append("\n");
+        sb.append("\n");
+        return sb;
     }
 
-    public void getResult() {
-        System.out.println(this.sb.toString());
+    public static void view(final Cars cars) {
+        final StringBuilder sb = record(cars);
+        System.out.println(sb.toString());
     }
 }

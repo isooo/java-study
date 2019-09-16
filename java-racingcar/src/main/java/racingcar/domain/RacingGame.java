@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.ui.*;
-
 public class RacingGame {
     private Cars cars;
     private int totalTrack;
@@ -15,12 +13,10 @@ public class RacingGame {
         return cars;
     }
 
-    public ResultView start() {
-        final ResultView resultView = new ResultView();
+    public Cars start() {
         for (int i = 0; i < totalTrack; i++) {
             cars.race();
-            resultView.record(cars);
         }
-        return resultView;
+        return cars;
     }
 }
