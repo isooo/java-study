@@ -16,7 +16,7 @@ class CarsTest {
         final Cars cars = new Cars(1);
 
         // then
-        assertThat(cars.getCount())
+        assertThat(cars.getCarList().size())
                 .isEqualTo(1);
     }
 
@@ -33,18 +33,5 @@ class CarsTest {
         // then
         assertThat(idList)
                 .isEqualTo(Arrays.asList(1L, 2L, 3L, 4L, 5L));
-    }
-
-    @Test
-    void 자동차_1대_1회_레이싱_테스트() {
-        // given
-
-        // when
-        final Cars cars = new Cars(1);
-        cars.race();
-
-        // then
-        assertThat(cars.getCarList().get(0).getPosition())
-                .isLessThanOrEqualTo(1);
     }
 }

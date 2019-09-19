@@ -17,28 +17,40 @@ class CarTest {
     }
 
     @Test
-    void 자동차_move_테스트_1회() {
+    void 자동차_0회_move_테스트() {
         // given
         final Car car = new Car(1L);
 
         // when
-        car.move();
+        car.move(false);
 
         // then
-        assertThat(car.getPosition()).isIn(0, 1);
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 
     @Test
-    void 자동차_move_테스트_5회() {
+    void 자동차_1회_move_테스트() {
+        // given
+        final Car car = new Car(1L);
+
+        // when
+        car.move(true);
+
+        // then
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
+
+    @Test
+    void 자동차_5회_move_테스트() {
         // given
         final Car car = new Car(1L);
 
         // when
         for (int i = 0; i < 5; i++) {
-            car.move();
+            car.move(true);
         }
 
         // then
-        assertThat(car.getPosition()).isLessThanOrEqualTo(5);
+        assertThat(car.getPosition()).isEqualTo(5);
     }
 }
