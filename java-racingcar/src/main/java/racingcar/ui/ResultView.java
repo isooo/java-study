@@ -2,22 +2,31 @@ package racingcar.ui;
 
 import racingcar.domain.*;
 
+import java.util.*;
+
 public class ResultView {
-    private static StringBuilder record(final Cars cars) {
-        final StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < cars.getCount(); i++) {
-            final Car car = cars.getCarList().get(i);
-            for (int j = 0; j < car.getPosition(); j++) {
-                sb.append("-");
-            }
-            sb.append("\n");
-        }
-        sb.append("\n");
-        return sb;
+    private static final String POSITION_DISPLAY = "-";
+
+    public static void view(final List<Result> resultList) {
+        resultList.stream()
+                .forEach(result -> {
+                            System.out.println(result.getTrack());
+                            printResult(result);
+                            System.out.println();
+                        }
+                );
     }
 
-    public static void view(final Cars cars) {
-        final StringBuilder sb = record(cars);
-        System.out.println(sb.toString());
+    private static void printResult(final Result result) {
+        result.getCars().getCarList()
+                .stream()
+                .forEach(car -> printCarPosition(car));
+    }
+
+    private static void printCarPosition(final Car car) {
+        for (int i = 0; i < car.getPosition(); i++) {
+            System.out.print(POSITION_DISPLAY);
+        }
+        System.out.println();
     }
 }

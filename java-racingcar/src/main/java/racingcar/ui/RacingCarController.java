@@ -3,12 +3,14 @@ package racingcar.ui;
 import racingcar.application.*;
 import racingcar.domain.*;
 
+import java.util.*;
+
 public class RacingCarController {
     public static void run() {
         final String car = InputView.getCarCount();
         final String track = InputView.getTrackCount();
-        RacingCarService service = new RacingCarService();
-        final Cars cars = service.start(car, track);
-        ResultView.view(cars);
+        final RacingCarService service = new RacingCarService();
+        final List<Result> resultList = service.race(car, track);
+        ResultView.view(resultList);
     }
 }
