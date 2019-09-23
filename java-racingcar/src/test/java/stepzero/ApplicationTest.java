@@ -1,4 +1,4 @@
-package hw;
+package stepzero;
 
 import org.junit.jupiter.api.*;
 

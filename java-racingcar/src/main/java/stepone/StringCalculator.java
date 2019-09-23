@@ -1,4 +1,4 @@
-package hw;
+package stepone;
 
 import java.util.*;
 import java.util.function.*;
