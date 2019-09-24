@@ -1,26 +1,36 @@
 package racingcar.domain;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.*;
+import org.junit.jupiter.params.provider.*;
 
 import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
+    private Car car;
 
-    @Test
-    void 자동차_생성시_Id_부여_테스트() {
-        // given
-        // when
-        final Car car = new Car(1L);
-
-        // then
-        assertThat(car.getId()).isEqualTo(1);
+    @BeforeEach
+    void init() {
+        car = new Car(1, "isooo");
     }
 
-    @Test
-    void 자동차_0회_move_테스트() {
+    @DisplayName("자동차 이름으로 Car 생성 테스트")
+    @ParameterizedTest
+    @CsvSource({"10, isooo", "11, anony"})
+    void createCarByName(final String id, final String name) {
         // given
-        final Car car = new Car(1L);
+        // when
+        final Car createdCar = new Car(Integer.parseInt(id), name);
 
+        // then
+        assertThat(createdCar.getName())
+                .isEqualTo(name);
+    }
+
+    @DisplayName("자동차 0회 move 테스트")
+    @Test
+    void zeroMove() {
+        // given
         // when
         car.move(false);
 
@@ -28,11 +38,10 @@ class CarTest {
         assertThat(car.getPosition()).isEqualTo(0);
     }
 
+    @DisplayName("자동차 1회 move 테스트")
     @Test
-    void 자동차_1회_move_테스트() {
+    void oneMove() {
         // given
-        final Car car = new Car(1L);
-
         // when
         car.move(true);
 
@@ -40,11 +49,10 @@ class CarTest {
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
+    @DisplayName("자동차 5회 move 테스트")
     @Test
-    void 자동차_5회_move_테스트() {
+    void fiveMoves() {
         // given
-        final Car car = new Car(1L);
-
         // when
         for (int i = 0; i < 5; i++) {
             car.move(true);
