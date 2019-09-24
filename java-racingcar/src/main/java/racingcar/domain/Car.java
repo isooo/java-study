@@ -1,20 +1,23 @@
 package racingcar.domain;
 
 public class Car {
-    private final Long id;
+    private final int id;
+    private final String name;
     private int position;
 
-    public Car(final Long id) {
+    Car(final int id, final String name) {
         this.id = id;
+        this.name = name;
         this.position = 0;
     }
 
-    private Car(final Long id, final int position) {
+    private Car(final int id, final String name, final int position) {
         this.id = id;
+        this.name = name;
         this.position = position;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
@@ -22,9 +25,17 @@ public class Car {
         return position;
     }
 
-    public void move(final boolean isMove) {
+    public String getName() {
+        return name;
+    }
+
+    void move(final boolean isMove) {
         if (isMove) {
             this.position++;
         }
+    }
+
+    Car copy() {
+        return new Car(this.getId(), this.getName(), this.getPosition());
     }
 }

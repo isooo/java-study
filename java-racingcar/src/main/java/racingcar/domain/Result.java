@@ -6,7 +6,7 @@ public class Result {
 
     public Result(final int track, final Cars cars) {
         this.track = track;
-        this.cars = cars;
+        this.cars = cars.copy();
     }
 
     public int getTrack() {

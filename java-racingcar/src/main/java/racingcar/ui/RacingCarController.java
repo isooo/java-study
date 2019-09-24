@@ -7,10 +7,10 @@ import java.util.*;
 
 public class RacingCarController {
     public static void run() {
-        final String car = InputView.getCarCount();
-        final String track = InputView.getTrackCount();
+        final String carsNames = InputView.askNamesOfCars();
+        final String track = InputView.askTrackCount();
         final RacingCarService service = new RacingCarService();
-        final List<Result> resultList = service.race(car, track);
+        final List<Result> resultList = service.race(carsNames, track);
         ResultView.view(resultList);
     }
 }

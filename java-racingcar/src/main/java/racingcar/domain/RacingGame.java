@@ -13,10 +13,6 @@ public class RacingGame {
         this.totalTrack = totalTrack;
     }
 
-    public Cars registerCars(int numberOfCars) {
-        return new Cars(numberOfCars);
-    }
-
     public List<Result> race(final Cars cars) {
         return IntStream.rangeClosed(1, totalTrack)
                 .mapToObj(track -> race(track, cars))
@@ -28,6 +24,7 @@ public class RacingGame {
         return new Result(track, cars);
     }
 
+    // 이 기능은 Cars에 위치하는게 더 낫지 않을까
     private void raceByTrack(final Cars cars) {
         cars.getCarList().stream()
                 .forEach(car -> car.move(isMove()));
