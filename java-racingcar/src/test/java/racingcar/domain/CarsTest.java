@@ -6,6 +6,7 @@ import org.junit.jupiter.params.*;
 import org.junit.jupiter.params.provider.*;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CarsTest {
     @DisplayName("자동차 이름 목록으로 Cars 생성 테스트")
@@ -19,6 +20,19 @@ class CarsTest {
         // then
         assertThat(cars.getCarList().size())
                 .isEqualTo(Integer.parseInt(expected));
+    }
+
+    @DisplayName("Cars 생성 실패 테스트")
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"  ", "\t", "\n"})
+    void registerCarsByEmptyNameFail(final String names) {
+        // given
+        // when
+        // then
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Cars(names);
+        });
     }
 
     @DisplayName("Cars 깊은 복사 테스트")
