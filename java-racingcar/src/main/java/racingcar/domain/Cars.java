@@ -21,6 +21,9 @@ public class Cars {
     }
 
     private List<Car> register(final String carsNames) {
+        if (StringUtils.isEmpty(carsNames)) {
+            throw new IllegalArgumentException("자동차 이름이 입력되지 않았습니다.");
+        }
         final String[] SeparatedCarsNames = CarUtils.separate(carsNames);
         final int numberOfCars = SeparatedCarsNames.length;
 

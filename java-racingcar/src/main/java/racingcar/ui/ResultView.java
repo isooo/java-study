@@ -3,12 +3,19 @@ package racingcar.ui;
 import racingcar.domain.*;
 
 import java.util.*;
+import java.util.stream.*;
 
 public class ResultView {
     private static final String POSITION_DISPLAY = "-";
     private static final String NAME_SEPARATION_DISPLAY = " : ";
 
     public static void view(final List<Result> resultList) {
+        printResult(resultList);
+        System.out.println();
+        printWinners(resultList);
+    }
+
+    private static void printResult(List<Result> resultList) {
         System.out.println("\n실행 결과");
         resultList.stream()
                 .forEach(result -> {
@@ -31,5 +38,16 @@ public class ResultView {
             System.out.print(POSITION_DISPLAY);
         }
         System.out.println();
+    }
+
+    private static void printWinners(final List<Result> resultList) {
+        final List<String> winnerNames = RacingWinner.get(resultList);
+        printNames(winnerNames);
+    }
+
+    private static void printNames(List<String> winnerNames) {
+        final String names = winnerNames.stream()
+                .collect(Collectors.joining(", "));
+        System.out.println(String.format("%s가 최종 우승했습니다.", names));
     }
 }
