@@ -15,7 +15,7 @@ public class ResultView {
         printWinners(resultList);
     }
 
-    private static void printResult(List<Result> resultList) {
+    private static void printResult(final List<Result> resultList) {
         System.out.println("\n실행 결과");
         resultList.stream()
                 .forEach(result -> {
@@ -45,7 +45,7 @@ public class ResultView {
         printNames(winnerNames);
     }
 
-    private static void printNames(List<String> winnerNames) {
+    private static void printNames(final List<String> winnerNames) {
         final String names = winnerNames.stream()
                 .collect(Collectors.joining(", "));
         System.out.println(String.format("%s가 최종 우승했습니다.", names));
