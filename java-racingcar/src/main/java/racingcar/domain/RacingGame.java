@@ -24,7 +24,6 @@ public class RacingGame {
         return new Result(track, cars);
     }
 
-    // Cars에서 getCarList를 하는 동작이 빈번한 것 같은데 이 부분을 어떻게 보완할 수 있을 까
     private void raceByTrack(final Cars cars) {
         cars.getCarList().stream()
                 .forEach(car -> car.move(isMove()));
