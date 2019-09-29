@@ -21,14 +21,11 @@ public class Cars {
     }
 
     private List<Car> register(final String carsNames) {
-        if (StringUtils.isEmpty(carsNames)) {
-            throw new IllegalArgumentException("자동차 이름이 입력되지 않았습니다.");
-        }
-        final String[] SeparatedCarsNames = CarUtils.separate(carsNames);
-        final int numberOfCars = SeparatedCarsNames.length;
+        final String[] separatedCarNames = StringUtils.separate(carsNames);
+        final int numberOfCars = separatedCarNames.length;
 
         return IntStream.rangeClosed(1, numberOfCars)
-                .mapToObj(i -> new Car(i, SeparatedCarsNames[i - 1]))
+                .mapToObj(i -> new Car(i, separatedCarNames[i - 1]))
                 .collect(Collectors.toList());
     }
 
@@ -52,3 +49,4 @@ public class Cars {
         return Objects.hash(cars);
     }
 }
+

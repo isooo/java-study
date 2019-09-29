@@ -5,16 +5,14 @@ public class Car {
     private final String name;
     private int position;
 
-    Car(final int id, final String name) {
-        this.id = id;
-        this.name = name;
-        this.position = 0;
-    }
-
     private Car(final int id, final String name, final int position) {
         this.id = id;
         this.name = name;
         this.position = position;
+    }
+
+    Car(final int id, final String name) {
+        this(id, name, 0);
     }
 
     public int getId() {
@@ -36,6 +34,6 @@ public class Car {
     }
 
     Car copy() {
-        return new Car(this.getId(), this.getName(), this.getPosition());
+        return new Car(this.id, this.name, this.position);
     }
 }
