@@ -12,7 +12,7 @@ public class Cars {
         this.cars = register(carsNames);
     }
 
-    public Cars(final List<Car> cars) {
+    private Cars(final List<Car> cars) {
         this.cars = cars;
     }
 
@@ -34,19 +34,6 @@ public class Cars {
                 .map(car -> car.copy())
                 .collect(Collectors.toList());
         return new Cars(capturedCars);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cars cars1 = (Cars) o;
-        return Objects.equals(cars, cars1.cars);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(cars);
     }
 }
 
