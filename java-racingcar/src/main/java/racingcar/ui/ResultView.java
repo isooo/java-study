@@ -1,5 +1,6 @@
 package racingcar.ui;
 
+import racingcar.application.*;
 import racingcar.domain.*;
 
 import java.util.*;
@@ -9,25 +10,25 @@ public class ResultView {
     private static final String POSITION_DISPLAY = "-";
     private static final String NAME_SEPARATION_DISPLAY = " : ";
 
-    public static void view(final List<Result> resultList) {
-        printResult(resultList);
+    public static void view(final RacingResult racingResult) {
+        printStateOfRacing(racingResult.getTrackResults().getTrackResultList());
         System.out.println();
-        printWinners(resultList);
+        printWinners(racingResult.getRacingWinner().getWinnerNames());
     }
 
-    private static void printResult(final List<Result> resultList) {
+    private static void printStateOfRacing(final List<TrackResult> trackResultList) {
         System.out.println("\n실행 결과");
-        resultList.stream()
+        trackResultList.stream()
                 .forEach(result -> {
                             System.out.println(result.getTrack());
-                            printResult(result);
+                            printStateOfRacing(result);
                             System.out.println();
                         }
                 );
     }
 
-    private static void printResult(final Result result) {
-        result.getCars().getCarList()
+    private static void printStateOfRacing(final TrackResult trackResult) {
+        trackResult.getCars().getCarList()
                 .stream()
                 .forEach(car -> printCarPosition(car));
     }
@@ -40,12 +41,7 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void printWinners(final List<Result> resultList) {
-        final List<String> winnerNames = RacingWinner.get(resultList);
-        printNames(winnerNames);
-    }
-
-    private static void printNames(final List<String> winnerNames) {
+    private static void printWinners(final List<String> winnerNames) {
         final String names = winnerNames.stream()
                 .collect(Collectors.joining(", "));
         System.out.println(String.format("%s가 최종 우승했습니다.", names));

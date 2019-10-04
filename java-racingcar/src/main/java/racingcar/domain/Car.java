@@ -15,10 +15,6 @@ public class Car {
         this(id, name, 0);
     }
 
-    public int getId() {
-        return id;
-    }
-
     public int getPosition() {
         return position;
     }

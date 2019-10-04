@@ -9,7 +9,7 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(final String carsNames) {
-        this.cars = register(carsNames);
+        this.cars = createCarList(carsNames);
     }
 
     private Cars(final List<Car> cars) {
@@ -20,7 +20,7 @@ public class Cars {
         return Collections.unmodifiableList(this.cars);
     }
 
-    private List<Car> register(final String carsNames) {
+    private List<Car> createCarList(final String carsNames) {
         final String[] separatedCarNames = StringUtils.separate(carsNames);
         final int numberOfCars = separatedCarNames.length;
 
