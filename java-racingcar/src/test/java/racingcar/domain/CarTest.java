@@ -14,7 +14,7 @@ class CarTest {
         car = new Car(1, "isooo");
     }
 
-    @DisplayName("자동차 이름으로 Car 생성 테스트")
+    @DisplayName("자동차 이름으로 Car 생성 성공 테스트")
     @ParameterizedTest
     @CsvSource({"10, isooo", "11, anony"})
     void createCarByName(final String id, final String name) {
