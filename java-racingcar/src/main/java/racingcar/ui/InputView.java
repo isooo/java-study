@@ -1,22 +1,22 @@
 package racingcar.ui;
 
-import racingcar.utils.*;
+import racingcarOld.utils.*;
 
 import java.util.*;
 
 public class InputView {
     private final static Scanner INPUT_SCANNER = new Scanner(System.in);
     private final static String ASK_NAMES_OF_CARS = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분) : ";
-    private final static String ASK_TRACK_COUNT = "시도할 횟수는 몇 회 인가요? : ";
+    private final static String ASK_NUMBER_OF_ROUND_IN_GAME = "시도할 횟수는 몇 회 인가요? : ";
     private final static String EXCEPTION_MESSAGE = "입력되지 않았습니다.";
 
-    public static String askNamesOfCars() {
+    public static String askNames() {
         System.out.print(ASK_NAMES_OF_CARS);
         return readLine();
     }
 
-    public static int askTrackCount() {
-        System.out.print(ASK_TRACK_COUNT);
+    public static int askRound() {
+        System.out.print(ASK_NUMBER_OF_ROUND_IN_GAME);
         final String str = readLine();
         return Integer.parseInt(str);
     }
