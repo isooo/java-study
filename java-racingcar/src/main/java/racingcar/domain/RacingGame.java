@@ -12,13 +12,11 @@ public class RacingGame {
 
     public List<RacingCars> race(final RacingCars racingCars) {
         return IntStream.rangeClosed(1, this.totalRound)
-                .mapToObj(i -> race(i, racingCars))
+                .mapToObj(i -> raceByRounds(racingCars))
                 .collect(Collectors.toList());
     }
 
-    private RacingCars race(final int roundNumber, final RacingCars racingCars) {
+    private RacingCars raceByRounds(final RacingCars racingCars) {
         return racingCars.move();
     }
-
-    
 }

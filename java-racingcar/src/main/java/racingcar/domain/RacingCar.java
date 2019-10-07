@@ -5,9 +5,28 @@ public class RacingCar {
     private final String name;
     private int position;
 
-    RacingCar(final int id, final String name) {
+    private RacingCar(final int id, final String name, final int position) {
         this.id = id;
         this.name = name;
-        this.position = 0;
+        this.position = position;
+    }
+
+    RacingCar(final int id, final String name) {
+        this(id, name, 0);
+    }
+
+    String getName() {
+        return name;
+    }
+
+    int getPosition() {
+        return position;
+    }
+
+    public RacingCar move(final boolean move) {
+        if (move) {
+            this.position++;
+        }
+        return new RacingCar(id, name, position);
     }
 }

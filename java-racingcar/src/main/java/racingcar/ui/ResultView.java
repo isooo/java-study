@@ -1,6 +1,5 @@
 package racingcar.ui;
 
-import racingcar.application.*;
 import racingcar.domain.*;
 
 import java.util.*;
@@ -10,39 +9,44 @@ public class ResultView {
     private static final String POSITION_DISPLAY = "-";
     private static final String NAME_SEPARATION_DISPLAY = " : ";
 
-    public static void view(final RacingResult racingResult) {
-        printStateOfRacing(racingResult.getTrackResults().getTrackResultList());
-        System.out.println();
-        printWinners(racingResult.getRacingWinner().getWinnerNames());
-    }
-
-    private static void printStateOfRacing(final List<TrackResult> trackResultList) {
+    public static void view(final List<RacingCars> racingCarsList) {
         System.out.println("\n실행 결과");
-        trackResultList.stream()
-                .forEach(result -> {
-                            System.out.println(result.getTrack());
-                            printStateOfRacing(result);
-                            System.out.println();
-                        }
-                );
+        printResult(racingCarsList);
+        printWinners(racingCarsList.get(racingCarsList.size() - 1));
     }
 
-    private static void printStateOfRacing(final TrackResult trackResult) {
-        trackResult.getCars().getCarList()
-                .stream()
-                .forEach(car -> printCarPosition(car));
+    private static void printResult(final List<RacingCars> racingCarsList) {
+        racingCarsList.stream()
+                .forEach(racingCars -> printRoundResult(racingCars));
     }
 
-    private static void printCarPosition(final Car car) {
-        System.out.print(car.getName() + NAME_SEPARATION_DISPLAY);
-        for (int i = 0; i < car.getPosition(); i++) {
+    private static void printRoundResult(final RacingCars racingCars) {
+        final Map<String, Integer> test = racingCars.test();
+        final Set<String> keySet = test.keySet();
+        keySet.stream().forEach(name -> printRacingCar(name, test.get(name)));
+//        racingCars.getRacingCarList().stream()
+//                .forEach(racingCar -> printRacingCar(racingCar));
+        System.out.println();
+    }
+
+    private static void printRacingCar(final String name, final int position) {
+        System.out.print(name + NAME_SEPARATION_DISPLAY);
+        for (int i = 0; i < position; i++) {
             System.out.print(POSITION_DISPLAY);
         }
         System.out.println();
     }
 
-    private static void printWinners(final List<String> winnerNames) {
-        final String names = winnerNames.stream()
+//    private static void printRacingCar(final RacingCar racingCar) {
+//        System.out.print(racingCar.getName() + NAME_SEPARATION_DISPLAY);
+//        for (int i = 0; i < racingCar.getPosition(); i++) {
+//            System.out.print(POSITION_DISPLAY);
+//        }
+//        System.out.println();
+//    }
+
+    private static void printWinners(final RacingCars racingCars) {
+        final String names = racingCars.getWinners().stream()
                 .collect(Collectors.joining(", "));
         System.out.println(String.format("%s가 최종 우승했습니다.", names));
     }

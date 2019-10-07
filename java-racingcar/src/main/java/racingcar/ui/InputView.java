@@ -1,6 +1,6 @@
 package racingcar.ui;
 
-import racingcarOld.utils.*;
+import racingcar.utils.*;
 
 import java.util.*;
 
