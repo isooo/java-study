@@ -1,17 +1,23 @@
 package racingcar.application;
 
 import org.junit.jupiter.api.*;
+import racingcar.domain.*;
+
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RacingCarServiceTest {
-
-    @DisplayName("race 후 한 명 이상의 우승자가 나오는지 테스트")
+    @DisplayName("race 후 RacingCars 사이즈 테스트")
     @Test
-    void racingTest() {
+    void racingCarsListSize() {
+        // given
         final RacingCarService racingCarService = new RacingCarService();
-        final RacingResult racingResult = racingCarService.race("a,b,c", 1);
-        assertThat(racingResult.getRacingWinner().getWinnerNames().size())
-                .isLessThanOrEqualTo(3);
+
+        // when
+        final List<RacingCars> racingCarsList = racingCarService.race("a,b,c", 5);
+
+        // then
+        assertThat(racingCarsList.size()).isEqualTo(5);
     }
 }

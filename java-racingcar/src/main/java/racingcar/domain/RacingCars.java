@@ -3,12 +3,9 @@ package racingcar.domain;
 import racingcar.utils.*;
 
 import java.util.*;
-import java.util.concurrent.*;
 import java.util.stream.*;
 
 public class RacingCars {
-    private static final int RANDOM_BOUND = 10;
-    private static final int NUMBER_CONDITION_TO_MOVE = 4;
 
     private final List<RacingCar> racingCarList;
 
@@ -27,15 +24,11 @@ public class RacingCars {
                 .collect(Collectors.toList());
     }
 
-    RacingCars move() {
+    RacingCars move(final MovingPolicy movingPolicy) {
         final List<RacingCar> racingCarList = this.racingCarList.stream()
-                .map(racingCar -> racingCar.move(isMove()))
+                .map(racingCar -> racingCar.move(movingPolicy.isPossible()))
                 .collect(Collectors.toList());
         return new RacingCars(racingCarList);
-    }
-
-    private static boolean isMove() {
-        return new Random().nextInt(RANDOM_BOUND) >= NUMBER_CONDITION_TO_MOVE;
     }
 
     public List<RacingCar> getRacingCarList() {

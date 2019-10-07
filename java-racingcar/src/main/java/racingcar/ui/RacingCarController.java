@@ -1,9 +1,7 @@
 package racingcar.ui;
 
 import racingcar.application.*;
-import racingcar.application.RacingCarService;
 import racingcar.domain.*;
-import racingcarOld.application.*;
 
 import java.util.*;
 
