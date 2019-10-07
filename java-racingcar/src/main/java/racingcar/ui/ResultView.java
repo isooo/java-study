@@ -21,29 +21,18 @@ public class ResultView {
     }
 
     private static void printRoundResult(final RacingCars racingCars) {
-        final Map<String, Integer> test = racingCars.test();
-        final Set<String> keySet = test.keySet();
-        keySet.stream().forEach(name -> printRacingCar(name, test.get(name)));
-//        racingCars.getRacingCarList().stream()
-//                .forEach(racingCar -> printRacingCar(racingCar));
+        racingCars.getRacingCarList().stream()
+                .forEach(racingCar -> printRacingCar(racingCar));
         System.out.println();
     }
 
-    private static void printRacingCar(final String name, final int position) {
-        System.out.print(name + NAME_SEPARATION_DISPLAY);
-        for (int i = 0; i < position; i++) {
+    private static void printRacingCar(final RacingCar racingCar) {
+        System.out.print(racingCar.getName() + NAME_SEPARATION_DISPLAY);
+        for (int i = 0; i < racingCar.getPosition(); i++) {
             System.out.print(POSITION_DISPLAY);
         }
         System.out.println();
     }
-
-//    private static void printRacingCar(final RacingCar racingCar) {
-//        System.out.print(racingCar.getName() + NAME_SEPARATION_DISPLAY);
-//        for (int i = 0; i < racingCar.getPosition(); i++) {
-//            System.out.print(POSITION_DISPLAY);
-//        }
-//        System.out.println();
-//    }
 
     private static void printWinners(final RacingCars racingCars) {
         final String names = racingCars.getWinners().stream()

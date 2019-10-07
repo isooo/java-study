@@ -38,11 +38,8 @@ public class RacingCars {
         return new Random().nextInt(RANDOM_BOUND) >= NUMBER_CONDITION_TO_MOVE;
     }
 
-    public Map<String, Integer> test() {
-        final Map<String, Integer> map = new ConcurrentHashMap<>();
-        racingCarList.stream()
-                .forEach(racingCar -> map.put(racingCar.getName(), racingCar.getPosition()));
-        return map;
+    public List<RacingCar> getRacingCarList() {
+        return racingCarList;
     }
 
     public List<String> getWinners() {

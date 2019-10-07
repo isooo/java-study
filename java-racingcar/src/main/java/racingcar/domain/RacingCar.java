@@ -15,11 +15,11 @@ public class RacingCar {
         this(id, name, 0);
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    int getPosition() {
+    public int getPosition() {
         return position;
     }
 
