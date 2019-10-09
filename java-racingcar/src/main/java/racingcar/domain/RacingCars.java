@@ -6,7 +6,6 @@ import java.util.*;
 import java.util.stream.*;
 
 public class RacingCars {
-
     private final List<RacingCar> racingCarList;
 
     public RacingCars(final String carsNames) {

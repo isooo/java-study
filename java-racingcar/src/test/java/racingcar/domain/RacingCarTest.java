@@ -2,8 +2,6 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.*;
 
-import java.util.stream.*;
-
 import static org.assertj.core.api.Assertions.*;
 
 class RacingCarTest {
@@ -29,10 +27,10 @@ class RacingCarTest {
     void racingCarMoveOnce() {
         // given
         // when
-        racingCar.move(true);
+        final RacingCar racingCarAfterMove = this.racingCar.move(true);
 
         // then
-        assertThat(racingCar.getPosition()).isEqualTo(1);
+        assertThat(racingCarAfterMove.getPosition()).isEqualTo(1);
     }
 
     @DisplayName("레이싱 카 1회 move 실패 시 position 테스트")
@@ -40,29 +38,20 @@ class RacingCarTest {
     void racingCarMoveNone() {
         // given
         // when
-        racingCar.move(false);
+        final RacingCar racingCarAfterMove = racingCar.move(false);
 
         // then
-        assertThat(racingCar.getPosition()).isEqualTo(0);
+        assertThat(racingCarAfterMove.getPosition()).isEqualTo(0);
     }
 
-    @DisplayName("레이싱 카 5회 move 중 3회 성공 시 position 테스트")
+    @DisplayName("레이싱 카 move 3회 성공 시 position 테스트")
     @Test
     void racingCarMoveThree() {
         // given
         // when
-        IntStream.rangeClosed(1, 5)
-                .forEach(i ->
-                        {
-                            if (i < 4) {
-                                racingCar.move(true);
-                            } else {
-                                racingCar.move(false);
-                            }
-                        }
-                );
+        final RacingCar racingCarAfterMove = new RacingCar(2, "test2", 3);
 
         // then
-        assertThat(racingCar.getPosition()).isEqualTo(3);
+        assertThat(racingCarAfterMove.getPosition()).isEqualTo(3);
     }
 }

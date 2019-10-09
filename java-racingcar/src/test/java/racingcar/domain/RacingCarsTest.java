@@ -8,8 +8,6 @@ import java.util.*;
 import java.util.stream.*;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 class RacingCarsTest {
     @DisplayName("자동차 이름 목록으로 RacingCars 생성 성공 테스트")
@@ -25,42 +23,48 @@ class RacingCarsTest {
                 .isEqualTo(Integer.parseInt(expected));
     }
 
-    @DisplayName("3대의 RacingCar 중 1대만 움직임 테스트")
+    @DisplayName("3대의 RacingCar 전부 움직였을 때 position 테스트")
     @Test
     void moveTest() {
         // given
         final RacingCars racingCars = new RacingCars("a,b,c");
-        final MovingPolicy movingPolicy = mock(MovingPolicy.class);
-        when(movingPolicy.isPossible())
-                .thenReturn(true)
-                .thenReturn(false)
-                .thenReturn(false);
 
         // when
-        final RacingCars racingCarsAfterMove = racingCars.move(movingPolicy);
+        final RacingCars racingCarsAfterMove = racingCars.move(() -> true);
         final List<Integer> positionList = racingCarsAfterMove.getRacingCarList().stream()
                 .map(racingCar -> racingCar.getPosition())
                 .collect(Collectors.toList());
 
         // then
-        assertThat(positionList.toArray()).isEqualTo(new int[]{1,0,0});
+        final boolean result = positionList.stream()
+                .allMatch(position -> position == 1);
+        assertThat(result).isEqualTo(true);
     }
 
-    @DisplayName("3대의 RacingCar 중 2대만 움직임 후 우승자 테스트")
+    @DisplayName("3대의 RacingCar 모두 움직이지 않았을 때 우승자 테스트")
     @Test
     void winnerTest() {
         // given
         final RacingCars racingCars = new RacingCars("a,b,c");
-        final MovingPolicy movingPolicy = mock(MovingPolicy.class);
-        when(movingPolicy.isPossible())
-                .thenReturn(false)
-                .thenReturn(true)
-                .thenReturn(true);
 
         // when
-        final List<String> winners = racingCars.move(movingPolicy).getWinners();
+        final List<String> winners = racingCars.move(() -> false).getWinners();
 
         // then
-        assertThat(winners.toArray()).isEqualTo(new String[]{"b", "c"});
+        assertThat(winners.toArray()).isEqualTo(new String[]{"a", "b", "c"});
+    }
+
+    @DisplayName("우승자 위치 출력 테스트")
+    @Test
+    void winnerPosition() {
+        // given
+        RacingCars racingCars = new RacingCars("a,b");
+
+        // when
+        IntStream.rangeClosed(1, 4)
+                .forEach(i -> racingCars.move(() -> true));
+
+        // then
+        assertThat(racingCars.getMaxPosition()).isEqualTo(4);
     }
 }

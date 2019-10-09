@@ -4,18 +4,15 @@ import org.junit.jupiter.api.*;
 
 import java.util.*;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.*;
 
 class RacingGameTest {
-
-    @DisplayName("5회의 race 테스트")
+    @DisplayName("5회의 race 후 List<RacingCars> 사이즈 테스트")
     @Test
     void raceTest() {
         // given
-        final MovingPolicy movingPolicy = mock(MovingPolicy.class);
-        final RacingCars racingCars = mock(RacingCars.class);
-        final RacingGame racingGame = new RacingGame(5, movingPolicy);
+        final RacingCars racingCars = new RacingCars("a, b, c");
+        final RacingGame racingGame = new RacingGame(5, new RandomMovingPolicy());
 
         // when
         final List<RacingCars> racingCarsList = racingGame.race(racingCars);
