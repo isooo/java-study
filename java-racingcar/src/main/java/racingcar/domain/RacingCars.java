@@ -32,25 +32,22 @@ public class RacingCars {
     }
 
     public List<RacingCar> getRacingCarList() {
-        return racingCarList;
+        return new ArrayList<>(racingCarList);
     }
 
     public List<String> getWinners() {
-        final int theBiggestPosition = getTheBiggestPosition();
+        final int maxPosition = getMaxPosition();
+
         return racingCarList.stream()
-                .filter(racingCar -> racingCar.getPosition() >= theBiggestPosition)
-                .map(car -> car.getName())
+                .filter(racingCar -> racingCar.isWinnerPosition(maxPosition))
+                .map(racingCar -> racingCar.getName())
                 .collect(Collectors.toList());
     }
 
-    private int getTheBiggestPosition() {
-        int theBiggestPosition = 0;
-        for (RacingCar racingCar : racingCarList) {
-            int temp = racingCar.getPosition();
-            if (temp > theBiggestPosition) {
-                theBiggestPosition = temp;
-            }
-        }
-        return theBiggestPosition;
+    public int getMaxPosition() {
+        return racingCarList.stream()
+                .mapToInt(racingCar -> racingCar.getPosition())
+                .max()
+                .getAsInt();
     }
 }

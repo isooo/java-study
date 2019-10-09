@@ -20,7 +20,6 @@ public class ResultView {
                 .forEach(racingCars -> printRoundResult(racingCars));
     }
 
-    // TODO : racingCarList를 직접 가져오지 않는 방법은 없을까
     private static void printRoundResult(final RacingCars racingCars) {
         racingCars.getRacingCarList().stream()
                 .forEach(racingCar -> printRacingCar(racingCar));

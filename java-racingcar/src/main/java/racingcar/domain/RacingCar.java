@@ -5,7 +5,7 @@ public class RacingCar {
     private final String name;
     private int position;
 
-    private RacingCar(final int id, final String name, final int position) {
+    RacingCar(final int id, final String name, final int position) {
         this.id = id;
         this.name = name;
         this.position = position;
@@ -28,5 +28,9 @@ public class RacingCar {
             this.position++;
         }
         return new RacingCar(id, name, position);
+    }
+
+    boolean isWinnerPosition(final int winnerPosition) {
+        return position == winnerPosition;
     }
 }

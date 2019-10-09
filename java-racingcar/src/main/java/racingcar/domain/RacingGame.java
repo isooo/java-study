@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import java.util.*;
-import java.util.stream.*;
 
 public class RacingGame {
     private final int totalRound;
@@ -13,9 +12,13 @@ public class RacingGame {
     }
 
     public List<RacingCars> race(final RacingCars racingCars) {
-        return IntStream.rangeClosed(1, this.totalRound)
-                .mapToObj(i -> raceByRounds(racingCars))
-                .collect(Collectors.toList());
+        final List<RacingCars> racingCarsList = new ArrayList<>();
+        RacingCars temp = racingCars;
+        for (int i = 0; i < totalRound; i++) {
+            temp = raceByRounds(temp);
+            racingCarsList.add(temp);
+        }
+        return racingCarsList;
     }
 
     private RacingCars raceByRounds(final RacingCars racingCars) {
