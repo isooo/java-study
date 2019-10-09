@@ -12,20 +12,20 @@ public class RacingCars {
         this.racingCarList = createCars(carsNames);
     }
 
-    private RacingCars(final List<RacingCar> racingCarList) {
+    RacingCars(final List<RacingCar> racingCarList) {
         this.racingCarList = new ArrayList<>(racingCarList);
     }
 
     private List<RacingCar> createCars(final String carsNames) {
         final String[] namesArray = StringUtils.separate(carsNames);
         return IntStream.rangeClosed(1, namesArray.length)
-                .mapToObj(i -> new RacingCar(i, namesArray[i - 1]))
+                .mapToObj(i -> new RacingCar(i, namesArray[i - 1], new RandomMovingPolicy()))
                 .collect(Collectors.toList());
     }
 
-    RacingCars move(final MovingPolicy movingPolicy) {
+    RacingCars move() {
         final List<RacingCar> racingCarList = this.racingCarList.stream()
-                .map(racingCar -> racingCar.move(movingPolicy.isPossible()))
+                .map(racingCar -> racingCar.move())
                 .collect(Collectors.toList());
         return new RacingCars(racingCarList);
     }

@@ -12,7 +12,7 @@ class RacingGameTest {
     void raceTest() {
         // given
         final RacingCars racingCars = new RacingCars("a, b, c");
-        final RacingGame racingGame = new RacingGame(5, new RandomMovingPolicy());
+        final RacingGame racingGame = new RacingGame(5);
 
         // when
         final List<RacingCars> racingCarsList = racingGame.race(racingCars);

@@ -27,10 +27,14 @@ class RacingCarsTest {
     @Test
     void moveTest() {
         // given
-        final RacingCars racingCars = new RacingCars("a,b,c");
+        final RacingCars racingCars = new RacingCars(Arrays.asList(
+                new RacingCar(1, "a", () -> true),
+                new RacingCar(2, "b", () -> true),
+                new RacingCar(3, "c", () -> true)
+        ));
 
         // when
-        final RacingCars racingCarsAfterMove = racingCars.move(() -> true);
+        final RacingCars racingCarsAfterMove = racingCars.move();
         final List<Integer> positionList = racingCarsAfterMove.getRacingCarList().stream()
                 .map(racingCar -> racingCar.getPosition())
                 .collect(Collectors.toList());
@@ -43,28 +47,35 @@ class RacingCarsTest {
 
     @DisplayName("3대의 RacingCar 모두 움직이지 않았을 때 우승자 테스트")
     @Test
-    void winnerTest() {
+    void winnerTest1() {
         // given
-        final RacingCars racingCars = new RacingCars("a,b,c");
+        final RacingCars racingCars = new RacingCars(Arrays.asList(
+                new RacingCar(1, "a", () -> false),
+                new RacingCar(2, "b", () -> false),
+                new RacingCar(3, "c", () -> false)
+        ));
 
         // when
-        final List<String> winners = racingCars.move(() -> false).getWinners();
+        final List<String> winners = racingCars.move().getWinners();
 
         // then
         assertThat(winners.toArray()).isEqualTo(new String[]{"a", "b", "c"});
     }
 
-    @DisplayName("우승자 위치 출력 테스트")
+    @DisplayName("3대의 RacingCar 중 2대만 움직였을 때 우승자 테스트")
     @Test
-    void winnerPosition() {
+    void winnerPositionTest() {
         // given
-        RacingCars racingCars = new RacingCars("a,b");
+        final RacingCars racingCars = new RacingCars(Arrays.asList(
+                new RacingCar(1, "a", () -> true),
+                new RacingCar(2, "b", () -> true),
+                new RacingCar(3, "c", () -> false)
+        ));
 
         // when
-        IntStream.rangeClosed(1, 4)
-                .forEach(i -> racingCars.move(() -> true));
+        final List<String> winners = racingCars.move().getWinners();
 
         // then
-        assertThat(racingCars.getMaxPosition()).isEqualTo(4);
+        assertThat(winners.toArray()).isEqualTo(new String[]{"a", "b"});
     }
 }

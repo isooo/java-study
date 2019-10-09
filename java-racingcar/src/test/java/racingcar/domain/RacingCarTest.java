@@ -5,20 +5,15 @@ import org.junit.jupiter.api.*;
 import static org.assertj.core.api.Assertions.*;
 
 class RacingCarTest {
-    private RacingCar racingCar;
-
-    @BeforeEach
-    void init() {
-        this.racingCar = new RacingCar(1, "isooo");
-    }
-
     @DisplayName("레이싱 카 생성 테스트")
     @Test
     void createRacingCar() {
         // given
         // when
+        final RacingCar racingCar = new RacingCar(1, "test", new RandomMovingPolicy());
+
         // then
-        assertThat(racingCar.getName()).isEqualTo("isooo");
+        assertThat(racingCar.getName()).isEqualTo("test");
         assertThat(racingCar.getPosition()).isEqualTo(0);
     }
 
@@ -26,8 +21,10 @@ class RacingCarTest {
     @Test
     void racingCarMoveOnce() {
         // given
+        final RacingCar racingCar = new RacingCar(1, "test", () -> true);
+
         // when
-        final RacingCar racingCarAfterMove = this.racingCar.move(true);
+        final RacingCar racingCarAfterMove = racingCar.move();
 
         // then
         assertThat(racingCarAfterMove.getPosition()).isEqualTo(1);
@@ -37,8 +34,10 @@ class RacingCarTest {
     @Test
     void racingCarMoveNone() {
         // given
+        final RacingCar racingCar = new RacingCar(1, "test", () -> false);
+
         // when
-        final RacingCar racingCarAfterMove = racingCar.move(false);
+        final RacingCar racingCarAfterMove = racingCar.move();
 
         // then
         assertThat(racingCarAfterMove.getPosition()).isEqualTo(0);
@@ -49,7 +48,7 @@ class RacingCarTest {
     void racingCarMoveThree() {
         // given
         // when
-        final RacingCar racingCarAfterMove = new RacingCar(2, "test2", 3);
+        final RacingCar racingCarAfterMove = new RacingCar(2, "test2", 3, new RandomMovingPolicy());
 
         // then
         assertThat(racingCarAfterMove.getPosition()).isEqualTo(3);
