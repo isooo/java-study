@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import java.util.*;
+import racingcar.utils.*;
 
 public class RandomMovingPolicy implements MovingPolicy {
     private static final int RANDOM_BOUND = 10;
@@ -8,6 +8,6 @@ public class RandomMovingPolicy implements MovingPolicy {
 
     @Override
     public boolean isPossible() {
-        return new Random().nextInt(RANDOM_BOUND) >= NUMBER_CONDITION_TO_MOVE;
+        return RandomUtils.randomRange(RANDOM_BOUND) >= NUMBER_CONDITION_TO_MOVE;
     }
 }

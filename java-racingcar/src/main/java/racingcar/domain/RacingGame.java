@@ -3,25 +3,29 @@ package racingcar.domain;
 import java.util.*;
 
 public class RacingGame {
+    private final RacingCars racingCars;
     private final int totalRound;
-    private final MovingPolicy movingPolicy;
 
-    public RacingGame(final int totalRound, final MovingPolicy movingPolicy) {
+    public RacingGame(RacingCars racingCars, int totalRound) {
+        this.racingCars = racingCars;
         this.totalRound = totalRound;
-        this.movingPolicy = movingPolicy;
     }
 
-    public List<RacingCars> race(final RacingCars racingCars) {
+    public RacingGame(final String carsNames, final int totalRound) {
+        this(new RacingCars(carsNames), totalRound);
+    }
+
+    public List<RacingCars> race(final MovingPolicy movingPolicy) {
         final List<RacingCars> racingCarsByRound = new ArrayList<>();
         RacingCars temp = racingCars;
         for (int i = 0; i < totalRound; i++) {
-            temp = raceByRounds(temp);
+            temp = raceByRounds(temp, movingPolicy);
             racingCarsByRound.add(temp);
         }
         return racingCarsByRound;
     }
 
-    private RacingCars raceByRounds(final RacingCars racingCars) {
+    private RacingCars raceByRounds(final RacingCars racingCars, final MovingPolicy movingPolicy) {
         return racingCars.move(movingPolicy);
     }
 }

@@ -24,7 +24,7 @@ class RacingCarTest {
         final RacingCar racingCar = new RacingCar(1, "test");
 
         // when
-        final RacingCar racingCarAfterMove = racingCar.move(() -> true);
+        final RacingCar racingCarAfterMove = racingCar.move(true);
 
         // then
         assertThat(racingCarAfterMove.getPosition()).isEqualTo(1);
@@ -37,7 +37,7 @@ class RacingCarTest {
         final RacingCar racingCar = new RacingCar(1, "test");
 
         // when
-        final RacingCar racingCarAfterMove = racingCar.move(() -> false);
+        final RacingCar racingCarAfterMove = racingCar.move(false);
 
         // then
         assertThat(racingCarAfterMove.getPosition()).isEqualTo(0);
@@ -47,8 +47,10 @@ class RacingCarTest {
     @Test
     void racingCarMoveThree() {
         // given
+        final RacingCar racingCar = new RacingCar(1, "test");
+
         // when
-        final RacingCar racingCarAfterMove = new RacingCar(2, "test2", 3);
+        final RacingCar racingCarAfterMove = racingCar.move(true).move(true).move(true);
 
         // then
         assertThat(racingCarAfterMove.getPosition()).isEqualTo(3);

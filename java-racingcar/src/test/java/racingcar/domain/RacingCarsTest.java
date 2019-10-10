@@ -27,7 +27,13 @@ class RacingCarsTest {
     @Test
     void allMoveTest() {
         // given
-        final RacingCars racingCars = new RacingCars("a,b,c");
+        final RacingCars racingCars = new RacingCars(new ArrayList<>(
+                Arrays.asList(
+                        new RacingCar(1, "a"),
+                        new RacingCar(2, "b"),
+                        new RacingCar(3, "c")
+                )
+        ));
 
         // when
         final RacingCars racingCarsAfterMove = racingCars.move(() -> true);
@@ -47,7 +53,7 @@ class RacingCarsTest {
         // given
         final RacingCars racingCars = new RacingCars(new ArrayList<>(
                 Arrays.asList(
-                        new RacingCar(1, "a", 2),
+                        new RacingCar(1, "a", 3),
                         new RacingCar(2, "b", 3),
                         new RacingCar(3, "c", 2)
                 )

@@ -25,7 +25,7 @@ public class RacingCars {
 
     RacingCars move(final MovingPolicy movingPolicy) {
         final List<RacingCar> racingCarList = this.racingCarList.stream()
-                .map(racingCar -> racingCar.move(movingPolicy))
+                .map(racingCar -> racingCar.move(movingPolicy.isPossible()))
                 .collect(Collectors.toList());
         return new RacingCars(racingCarList);
     }
