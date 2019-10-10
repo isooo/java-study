@@ -9,14 +9,14 @@ public class ResultView {
     private static final String POSITION_DISPLAY = "-";
     private static final String NAME_SEPARATION_DISPLAY = " : ";
 
-    public static void view(final List<RacingCars> racingCarsList) {
+    public static void view(final List<RacingCars> racingCarsByRound) {
         System.out.println("\n실행 결과");
-        printResult(racingCarsList);
-        printWinners(racingCarsList.get(racingCarsList.size() - 1));
+        printResult(racingCarsByRound);
+        printWinners(racingCarsByRound.get(racingCarsByRound.size() - 1));
     }
 
-    private static void printResult(final List<RacingCars> racingCarsList) {
-        racingCarsList.stream()
+    private static void printResult(final List<RacingCars> racingCarsByRound) {
+        racingCarsByRound.stream()
                 .forEach(racingCars -> printRoundResult(racingCars));
     }
 

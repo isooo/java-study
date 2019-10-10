@@ -10,14 +10,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 class RacingCarServiceTest {
     @DisplayName("race 후 RacingCars 사이즈 테스트")
     @Test
-    void racingCarsListSize() {
+    void racingCarsByRoundSize() {
         // given
         final RacingCarService racingCarService = new RacingCarService();
 
         // when
-        final List<RacingCars> racingCarsList = racingCarService.race("a,b,c", 5);
+        final List<RacingCars> racingCarsByRound = racingCarService.race("a,b,c", 5);
 
         // then
-        assertThat(racingCarsList.size()).isEqualTo(5);
+        assertThat(racingCarsByRound.size()).isEqualTo(5);
     }
 }

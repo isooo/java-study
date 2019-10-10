@@ -10,13 +10,13 @@ public class RacingGame {
     }
 
     public List<RacingCars> race(final RacingCars racingCars) {
-        final List<RacingCars> racingCarsList = new ArrayList<>();
+        final List<RacingCars> racingCarsByRound = new ArrayList<>();
         RacingCars temp = racingCars;
         for (int i = 0; i < totalRound; i++) {
             temp = raceByRounds(temp);
-            racingCarsList.add(temp);
+            racingCarsByRound.add(temp);
         }
-        return racingCarsList;
+        return racingCarsByRound;
     }
 
     private RacingCars raceByRounds(final RacingCars racingCars) {

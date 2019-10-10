@@ -9,7 +9,7 @@ public class RacingCarController {
     public static void run(final RacingCarService racingCarService) {
         final String carsNames = InputView.askNames();
         final int totalRound = InputView.askRound();
-        final List<RacingCars> racingCarsList = racingCarService.race(carsNames, totalRound);
-        ResultView.view(racingCarsList);
+        final List<RacingCars> racingCarsByRound = racingCarService.race(carsNames, totalRound);
+        ResultView.view(racingCarsByRound);
     }
 }

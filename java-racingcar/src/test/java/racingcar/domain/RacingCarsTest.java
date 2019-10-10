@@ -35,12 +35,12 @@ class RacingCarsTest {
 
         // when
         final RacingCars racingCarsAfterMove = racingCars.move();
-        final List<Integer> positionList = racingCarsAfterMove.getRacingCarList().stream()
+        final List<Integer> positions = racingCarsAfterMove.getRacingCarList().stream()
                 .map(racingCar -> racingCar.getPosition())
                 .collect(Collectors.toList());
 
         // then
-        final boolean result = positionList.stream()
+        final boolean result = positions.stream()
                 .allMatch(position -> position == 1);
         assertThat(result).isEqualTo(true);
     }

@@ -15,9 +15,9 @@ class RacingGameTest {
         final RacingGame racingGame = new RacingGame(5);
 
         // when
-        final List<RacingCars> racingCarsList = racingGame.race(racingCars);
+        final List<RacingCars> racingCarsByRound = racingGame.race(racingCars);
 
         // then
-        assertThat(racingCarsList.size()).isEqualTo(5);
+        assertThat(racingCarsByRound.size()).isEqualTo(5);
     }
 }
