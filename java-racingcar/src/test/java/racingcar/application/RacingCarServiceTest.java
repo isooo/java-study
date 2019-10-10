@@ -5,12 +5,12 @@ import racingcar.domain.*;
 
 import java.util.*;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 class RacingCarServiceTest {
-    @DisplayName("race 후 RacingCars 사이즈 테스트")
+    @DisplayName("racingCar가 3대, 5회 라운드일 때 결과값")
     @Test
-    void racingCarsByRoundSize() {
+    void threeRacingCarFiveRounds() {
         // given
         final RacingCarService racingCarService = new RacingCarService();
 
