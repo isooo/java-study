@@ -3,30 +3,40 @@ package racingcar.ui;
 import racingcar.domain.*;
 
 import java.util.*;
+import java.util.stream.*;
 
 public class ResultView {
     private static final String POSITION_DISPLAY = "-";
+    private static final String NAME_SEPARATION_DISPLAY = " : ";
 
-    public static void view(final List<Result> resultList) {
-        resultList.stream()
-                .forEach(result -> {
-                            System.out.println(result.getTrack());
-                            printResult(result);
-                            System.out.println();
-                        }
-                );
+    public static void view(final List<RacingCars> racingCarsList) {
+        System.out.println("\n실행 결과");
+        printResult(racingCarsList);
+        printWinners(racingCarsList.get(racingCarsList.size() - 1));
     }
 
-    private static void printResult(final Result result) {
-        result.getCars().getCarList()
-                .stream()
-                .forEach(car -> printCarPosition(car));
+    private static void printResult(final List<RacingCars> racingCarsList) {
+        racingCarsList.stream()
+                .forEach(racingCars -> printRoundResult(racingCars));
     }
 
-    private static void printCarPosition(final Car car) {
-        for (int i = 0; i < car.getPosition(); i++) {
+    private static void printRoundResult(final RacingCars racingCars) {
+        racingCars.getRacingCarList().stream()
+                .forEach(racingCar -> printRacingCar(racingCar));
+        System.out.println();
+    }
+
+    private static void printRacingCar(final RacingCar racingCar) {
+        System.out.print(racingCar.getName() + NAME_SEPARATION_DISPLAY);
+        for (int i = 0; i < racingCar.getPosition(); i++) {
             System.out.print(POSITION_DISPLAY);
         }
         System.out.println();
+    }
+
+    private static void printWinners(final RacingCars racingCars) {
+        final String names = racingCars.getWinners().stream()
+                .collect(Collectors.joining(", "));
+        System.out.println(String.format("%s가 최종 우승했습니다.", names));
     }
 }
