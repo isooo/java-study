@@ -1,5 +1,6 @@
 package racingcar.ui;
 
+import racingcar.application.*;
 import racingcar.domain.*;
 
 import java.util.*;
@@ -9,10 +10,10 @@ public class ResultView {
     private static final String POSITION_DISPLAY = "-";
     private static final String NAME_SEPARATION_DISPLAY = " : ";
 
-    public static void view(final List<RacingCars> racingCarsByRound) {
+    public static void view(final RacingResult racingResult) {
         System.out.println("\n실행 결과");
-        printResult(racingCarsByRound);
-        printWinners(racingCarsByRound.get(racingCarsByRound.size() - 1));
+        printResult(racingResult.getRacingCarsByRound());
+        printWinners(racingResult.getWinners());
     }
 
     private static void printResult(final List<RacingCars> racingCarsByRound) {
@@ -34,8 +35,8 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void printWinners(final RacingCars racingCars) {
-        final String names = racingCars.getWinners().stream()
+    private static void printWinners(final List<String> winners) {
+        final String names = winners.stream()
                 .collect(Collectors.joining(", "));
         System.out.println(String.format("%s가 최종 우승했습니다.", names));
     }

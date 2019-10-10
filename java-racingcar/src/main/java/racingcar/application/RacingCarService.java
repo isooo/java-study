@@ -5,8 +5,10 @@ import racingcar.domain.*;
 import java.util.*;
 
 public class RacingCarService {
-    public List<RacingCars> race(final String carsNames, final int totalRound) {
+    public RacingResult race(final String carsNames, final int totalRound) {
         final RacingGame racingGame = new RacingGame(carsNames, totalRound);
-        return racingGame.race(new RandomMovingPolicy());
+        final List<RacingCars> racingCarsByRound = racingGame.race(new RandomMovingPolicy());
+        final List<String> winners = racingCarsByRound.get(racingCarsByRound.size() - 1).getWinners();
+        return new RacingResult(racingCarsByRound, winners);
     }
 }
