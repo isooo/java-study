@@ -12,4 +12,9 @@ public class Lotto {
     int getSize() {
         return numbers.size();
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
