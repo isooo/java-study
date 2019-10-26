@@ -30,16 +30,11 @@ public class Lotto {
         return new ArrayList<>(numbers);
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
-    }
-
-    public MatchingNumbers checkWinningRate(final Lotto winningNumbers) {
+    MatchedLotto checkWinningRate(final Lotto winningNumbers) {
         final List<Integer> machedNumbers = winningNumbers.getNumberList()
                 .stream()
                 .filter(n -> numbers.contains(n))
                 .collect(Collectors.toList());
-        return new MatchingNumbers(machedNumbers);
+        return new MatchedLotto(machedNumbers);
     }
 }
