@@ -12,7 +12,7 @@ public class Lottoes {
         lottoes = new ArrayList<>(create(amount));
     }
 
-    Lottoes(final List<Lotto> lottoes) {
+    public Lottoes(final List<Lotto> lottoes) {
         this.lottoes = lottoes;
     }
 
@@ -30,8 +30,8 @@ public class Lottoes {
         return lottoes.get(index);
     }
 
-    public MatchedLottoes checkWinningRate(final Lotto winningLotto) {
-        return new MatchedLottoes(getMatchedLottos(winningLotto));
+    public MachedLottoes checkWinningRate(final Lotto winningLotto) {
+        return new MachedLottoes(getMatchedLottos(winningLotto));
     }
 
     private List<MatchedLotto> getMatchedLottos(final Lotto winningLotto) {

@@ -12,7 +12,7 @@ public class Lotto {
         this.numbers = LottoMachine.getNumbers();
     }
 
-    Lotto(final List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         this.numbers = new ArrayList<>(numbers);
     }
 
