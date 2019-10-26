@@ -37,4 +37,9 @@ public class Lotto {
                 .collect(Collectors.toList());
         return new MatchedLotto(machedNumbers);
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

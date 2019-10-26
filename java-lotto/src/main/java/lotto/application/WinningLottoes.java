@@ -18,4 +18,14 @@ public class WinningLottoes{
     List<Integer> get() {
         return winningRates;
     }
+
+    public int getSize() {
+        return winningRates.size();
+    }
+
+    public int getCountOfEachMatches(final int value) {
+        return (int) winningRates.stream()
+                .filter(result -> value == result)
+                .count();
+    }
 }
