@@ -3,7 +3,6 @@ package lotto.ui;
 import lotto.application.LottoService;
 import lotto.application.WinningLottoes;
 import lotto.domain.Lottoes;
-import lotto.domain.MachedLottoes;
 
 import java.util.List;
 

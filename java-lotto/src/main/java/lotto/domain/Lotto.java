@@ -30,7 +30,7 @@ public class Lotto {
         return new ArrayList<>(numbers);
     }
 
-    MatchedLotto checkWinningRate(final Lotto winningNumbers) {
+    MatchedLotto getMatchedLotto(final Lotto winningNumbers) {
         final List<Integer> machedNumbers = winningNumbers.getNumberList()
                 .stream()
                 .filter(n -> numbers.contains(n))

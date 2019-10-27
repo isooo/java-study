@@ -28,7 +28,7 @@ class LottoTest {
         final Lotto winningNumbers = new Lotto(Arrays.asList(5, 6, 7, 8, 9, 10));
 
         // when
-        final MatchedLotto matchedLotto = lotto.checkWinningRate(winningNumbers);
+        final MatchedLotto matchedLotto = lotto.getMatchedLotto(winningNumbers);
 
         // then
         assertThat(matchedLotto.getNumbers()).containsExactly(5, 6);

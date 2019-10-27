@@ -7,13 +7,12 @@ import lotto.domain.MachedLottoes;
 import java.util.List;
 
 public class LottoService {
-
     public Lottoes getLottoes(final int amount) {
         return new Lottoes(amount);
     }
 
     public WinningLottoes matchingWinningNumbers(final List<Integer> winningNumbers, final Lottoes lottoes) {
-        final MachedLottoes matchedLottoes = lottoes.checkWinningRate(new Lotto(winningNumbers));
+        final MachedLottoes matchedLottoes = lottoes.getMatchedLottes(new Lotto(winningNumbers));
         return new WinningLottoes(matchedLottoes);
     }
 }

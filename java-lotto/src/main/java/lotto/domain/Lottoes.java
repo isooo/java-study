@@ -9,7 +9,7 @@ public class Lottoes {
     private final List<Lotto> lottoes;
 
     public Lottoes(final int amount) {
-        lottoes = new ArrayList<>(create(amount));
+        lottoes = create(amount);
     }
 
     public Lottoes(final List<Lotto> lottoes) {
@@ -17,9 +17,10 @@ public class Lottoes {
     }
 
     private List<Lotto> create(final int amount) {
-        return IntStream.rangeClosed(1, amount)
+        final List<Lotto> result = IntStream.rangeClosed(1, amount)
                 .mapToObj(i -> new Lotto())
                 .collect(Collectors.toList());
+        return new ArrayList<>(result);
     }
 
     public int getCount() {
@@ -30,13 +31,13 @@ public class Lottoes {
         return lottoes.get(index);
     }
 
-    public MachedLottoes checkWinningRate(final Lotto winningLotto) {
+    public MachedLottoes getMatchedLottes(final Lotto winningLotto) {
         return new MachedLottoes(getMatchedLottos(winningLotto));
     }
 
     private List<MatchedLotto> getMatchedLottos(final Lotto winningLotto) {
         return lottoes.stream()
-                    .map(lotto -> lotto.checkWinningRate(winningLotto))
+                    .map(lotto -> lotto.getMatchedLotto(winningLotto))
                     .collect(Collectors.toList());
     }
 }
