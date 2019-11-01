@@ -30,7 +30,7 @@ class LottoesTest {
         ));
 
         // when
-        final MachedLottoes matchedLottoes = lottoes.getMatchedLottes(new Lotto(Arrays.asList(3, 4, 5, 6, 7, 8)));
+        final MachedLottoes matchedLottoes = lottoes.getMatchedLottoes(new Lotto(Arrays.asList(3, 4, 5, 6, 7, 8)));
 
         // then
         assertThat(matchedLottoes.getWinningRates()).containsExactly(4, 2);
@@ -46,7 +46,7 @@ class LottoesTest {
         ));
 
         // when
-        final MachedLottoes matchedLottoes = lottoes.getMatchedLottes(new Lotto(Arrays.asList(30, 31, 32, 33, 34, 45)));
+        final MachedLottoes matchedLottoes = lottoes.getMatchedLottoes(new Lotto(Arrays.asList(30, 31, 32, 33, 34, 45)));
 
         // then
         assertThat(matchedLottoes.getWinningRates()).containsExactly(0, 0);

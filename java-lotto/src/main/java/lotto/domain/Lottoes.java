@@ -31,7 +31,7 @@ public class Lottoes {
         return lottoes.get(index);
     }
 
-    public MachedLottoes getMatchedLottes(final Lotto winningLotto) {
+    public MachedLottoes getMatchedLottoes(final Lotto winningLotto) {
         return new MachedLottoes(getMatchedLottos(winningLotto));
     }
 

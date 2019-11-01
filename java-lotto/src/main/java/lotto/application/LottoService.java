@@ -12,7 +12,7 @@ public class LottoService {
     }
 
     public WinningLottoes matchingWinningNumbers(final List<Integer> winningNumbers, final Lottoes lottoes) {
-        final MachedLottoes matchedLottoes = lottoes.getMatchedLottes(new Lotto(winningNumbers));
+        final MachedLottoes matchedLottoes = lottoes.getMatchedLottoes(new Lotto(winningNumbers));
         return new WinningLottoes(matchedLottoes);
     }
 }
