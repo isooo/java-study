@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,12 +13,6 @@ public class Lotto {
 
     public Lotto(final List<Integer> numbers) {
         this.numbers = new ArrayList<>(numbers);
-    }
-
-    private List<Integer> sort(final List<Integer> numbers) {
-        final List<Integer> temp = new ArrayList<>(numbers);
-        Collections.sort(temp);
-        return temp;
     }
 
     int getSize() {

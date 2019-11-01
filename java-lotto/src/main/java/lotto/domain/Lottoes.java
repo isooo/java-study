@@ -37,7 +37,7 @@ public class Lottoes {
 
     private List<MatchedLotto> getMatchedLottos(final Lotto winningLotto) {
         return lottoes.stream()
-                    .map(lotto -> lotto.getMatchedLotto(winningLotto))
-                    .collect(Collectors.toList());
+                .map(lotto -> lotto.getMatchedLotto(winningLotto))
+                .collect(Collectors.toList());
     }
 }
