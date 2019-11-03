@@ -19,12 +19,12 @@ public class Lotto {
         return numbers.size();
     }
 
-    private List<Integer> getNumberList() {
+    private List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
     }
 
     MatchedLotto getMatchedLotto(final Lotto winningNumbers) {
-        final List<Integer> machedNumbers = winningNumbers.getNumberList()
+        final List<Integer> machedNumbers = winningNumbers.getNumbers()
                 .stream()
                 .filter(n -> numbers.contains(n))
                 .collect(Collectors.toList());

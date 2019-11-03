@@ -8,19 +8,18 @@ import java.util.stream.IntStream;
 public class Lottoes {
     private final List<Lotto> lottoes;
 
-    public Lottoes(final int amount) {
-        lottoes = create(amount);
-    }
-
     public Lottoes(final List<Lotto> lottoes) {
-        this.lottoes = lottoes;
+        this.lottoes = new ArrayList<>(lottoes);
     }
 
-    private List<Lotto> create(final int amount) {
-        final List<Lotto> result = IntStream.rangeClosed(1, amount)
+    public Lottoes(final int amount) {
+        this(create(amount));
+    }
+
+    private static List<Lotto> create(final int amount) {
+        return IntStream.rangeClosed(1, amount)
                 .mapToObj(i -> new Lotto())
                 .collect(Collectors.toList());
-        return new ArrayList<>(result);
     }
 
     public int getCount() {
