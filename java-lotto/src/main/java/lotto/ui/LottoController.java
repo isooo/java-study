@@ -1,18 +1,12 @@
 package lotto.ui;
 
 import lotto.application.LottoService;
-import lotto.application.WinningLottoes;
-import lotto.domain.Lottoes;
-
-import java.util.List;
+import lotto.domain.Lottos;
 
 public class LottoController {
     public static void run(final LottoService lottoService) {
-        final int amount = InputView.getCount();
-        final Lottoes lottoes = lottoService.getLottoes(amount);
-        ResultView.printLottoes(lottoes);
-        final List<Integer> winningNumbers = InputView.getWinningNumbers();
-        final WinningLottoes winningLottoes = lottoService.matchingWinningNumbers(winningNumbers, lottoes);
-        ResultView.printWinningRate(winningLottoes);
+        final String amount = InputView.getAmount();
+        final Lottos lottos = lottoService.lottoPurchase(amount);
+        ResultView.printLottos(lottos);
     }
 }

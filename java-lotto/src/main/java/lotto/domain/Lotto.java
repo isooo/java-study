@@ -1,38 +1,17 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Lotto {
-    private final List<Integer> numbers;
+    private final LottoNumbers lottoNumbers;
 
-    Lotto() {
-        this.numbers = LottoMachine.getNumbers();
+    private Lotto(final LottoNumbers lottoNumbers) {
+        this.lottoNumbers = lottoNumbers;
     }
 
-    public Lotto(final List<Integer> numbers) {
-        this.numbers = new ArrayList<>(numbers);
+    public static Lotto create() {
+        return new Lotto(LottoMachine.getNumbers());
     }
 
-    int getSize() {
-        return numbers.size();
-    }
-
-    private List<Integer> getNumbers() {
-        return new ArrayList<>(numbers);
-    }
-
-    MatchedLotto getMatchedLotto(final Lotto winningNumbers) {
-        final List<Integer> machedNumbers = winningNumbers.getNumbers()
-                .stream()
-                .filter(n -> numbers.contains(n))
-                .collect(Collectors.toList());
-        return new MatchedLotto(machedNumbers);
-    }
-
-    @Override
-    public String toString() {
-        return numbers.toString();
+    public LottoNumbers getNumbers() {
+        return this.lottoNumbers;
     }
 }
