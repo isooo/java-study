@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoStore {
-    private static final int LOTTO_AMOUNT_UNIT = 1_000;
+    public static final int LOTTO_AMOUNT_UNIT = 1_000;
 
     public static Lottos purchase(final String amount) {
         final int count = convertAmountToCount(amount);

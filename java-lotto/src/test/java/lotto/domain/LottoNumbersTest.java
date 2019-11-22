@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class LottoNumbersTest {
@@ -42,5 +43,26 @@ class LottoNumbersTest {
         assertThatIllegalArgumentException().isThrownBy(
                 () -> new LottoNumbers(Arrays.asList(LOTTO_1, LOTTO_2, LOTTO_3, LOTTO_4, LOTTO_5, LOTTO_6, LOTTO_45))
         );
+    }
+
+    @DisplayName("당첨된 번호 개수 구하기")
+    @Test
+    void calculateCountOfWinningNumbers() {
+        // given
+        final LottoNumber LOTTO_1 = LottoNumber.get(1);
+        final LottoNumber LOTTO_2 = LottoNumber.get(2);
+        final LottoNumber LOTTO_3 = LottoNumber.get(3);
+        final LottoNumber LOTTO_4 = LottoNumber.get(4);
+        final LottoNumber LOTTO_5 = LottoNumber.get(5);
+        final LottoNumber LOTTO_6 = LottoNumber.get(6);
+        final LottoNumber LOTTO_7 = LottoNumber.get(7);
+        final LottoNumbers lottoNumbers = new LottoNumbers(Arrays.asList(LOTTO_1, LOTTO_2, LOTTO_3, LOTTO_4, LOTTO_5, LOTTO_6));
+        final LottoNumbers winningLottoNumbers = new LottoNumbers(Arrays.asList(LOTTO_2, LOTTO_3, LOTTO_4, LOTTO_5, LOTTO_6, LOTTO_7));
+
+        // when
+        final long result = lottoNumbers.calculateCountOfWinningNumbers(winningLottoNumbers);
+
+        // then
+        assertThat(result).isSameAs(5L);
     }
 }

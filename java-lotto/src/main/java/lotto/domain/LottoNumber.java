@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Objects;
+
 public class LottoNumber implements Comparable<LottoNumber> {
     static final int MIN_NUMBER = 1;
     static final int MAX_NUMBER = 45;
@@ -10,7 +12,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
         this.value = validate(value);
     }
 
-    static LottoNumber get(final int value) {
+    public static LottoNumber get(final int value) {
         return new LottoNumber(value);
     }
 
@@ -29,5 +31,18 @@ public class LottoNumber implements Comparable<LottoNumber> {
     @Override
     public String toString() {
         return String.valueOf(this.value);
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LottoNumber)) return false;
+        final LottoNumber that = (LottoNumber) o;
+        return value == that.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }

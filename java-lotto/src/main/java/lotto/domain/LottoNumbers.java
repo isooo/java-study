@@ -36,4 +36,14 @@ public class LottoNumbers {
             throw new IllegalArgumentException();
         }
     }
+
+    public long calculateCountOfWinningNumbers(final LottoNumbers winningLottoNumbers) {
+        return this.values.stream()
+                .filter(number -> winningLottoNumbers.isContains(number))
+                .count();
+    }
+
+    private boolean isContains(final LottoNumber number) {
+        return this.values.contains(number);
+    }
 }
