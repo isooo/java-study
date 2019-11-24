@@ -1,16 +1,23 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoNumbers {
     static final int TOTAL_LOTTO_COUNT = 6;
 
-    private final List<LottoNumber> values;
+    // TODO 5: 요소의 중복을 방지하기 위해 컬렉션을 Set으로 변경
+    private final Set<LottoNumber> values;
 
     public LottoNumbers(final List<LottoNumber> values) {
         validate(values);
-        this.values = new ArrayList<>(values);
+        this.values = new LinkedHashSet<>(values);
+    }
+
+    LottoNumbers(int... values) {
+        this(Arrays.stream(values)
+                .mapToObj(value -> LottoNumber.get(value))
+                .collect(Collectors.toList()));
     }
 
     public List<LottoNumber> get() {

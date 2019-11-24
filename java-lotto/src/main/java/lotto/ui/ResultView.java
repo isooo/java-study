@@ -31,6 +31,7 @@ public class ResultView {
                 .filter(ele -> ele.getKey() != LottoPrize.ZERO)
                 .sorted(Comparator.comparing(Map.Entry::getKey, Comparator.reverseOrder()))
                 .forEach(ele -> System.out.println(changeFormatToPrint(ele)));
+        // TODO 3: 수익률 미리 계산하여 넘기기
         System.out.println("총 수익률은 " + winningStatistics.getRoi() + "입니다.");
     }
 

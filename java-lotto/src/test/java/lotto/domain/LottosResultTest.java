@@ -21,8 +21,7 @@ class LottosResultTest {
 
         // then
 
-//        System.out.println(lottosResult.get());
-        System.out.println(expected);
+        // TODO 8: 불필요한 출력 코드 제거
         assertThat(lottosResult.getRoi()).isEqualTo(expected);
     }
 }

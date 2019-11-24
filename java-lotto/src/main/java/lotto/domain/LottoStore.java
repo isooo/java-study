@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.Utils.StringUtils;
+import lotto.utils.StringUtils;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

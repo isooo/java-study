@@ -6,9 +6,15 @@ import java.util.Map;
 
 public class LottosResult {
     private final Map<LottoPrize, Integer> winningStatistics;
+    private final long roi;
 
     private LottosResult(final List<LottoPrize> lottoPrizes) {
         this.winningStatistics = initialize(lottoPrizes);
+        this.roi = calculateRoi();
+    }
+
+    private long calculateRoi() {
+        return getTotalPrizeMoney() / getAsset();
     }
 
     public static LottosResult of(final List<LottoPrize> lottoPrizes) {
@@ -18,21 +24,20 @@ public class LottosResult {
     private static Map<LottoPrize, Integer> initialize(final List<LottoPrize> lottoPrizes) {
         final Map<LottoPrize, Integer> map = new HashMap<>();
         for (final LottoPrize lottoPrize : lottoPrizes) {
-            int count = 0;
-            if (map.containsKey(lottoPrize)) {
-                count = map.get(lottoPrize);
-            }
-            map.put(lottoPrize, ++count);
+            // TODO 1: Map에서 제공되는 API 활용하기 (getOrDefault)
+            map.getOrDefault(lottoPrize, 0);
+            map.put(lottoPrize, map.getOrDefault(lottoPrize, 0) + 1);
         }
         return map;
     }
 
     public Map<LottoPrize, Integer> get() {
-        return winningStatistics;
+        // TODO 2: 새로운 컬렉션 인스턴스 생성하여 넘기기
+        return new HashMap<>(winningStatistics);
     }
 
     public long getRoi() {
-        return getTotalPrizeMoney() / getAsset();
+        return this.roi;
     }
 
     private long getAsset() {

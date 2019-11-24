@@ -12,16 +12,9 @@ class LottosTest {
     @Test
     void name() {
         // given
-        final LottoNumber LOTTO_1 = LottoNumber.get(1);
-        final LottoNumber LOTTO_2 = LottoNumber.get(2);
-        final LottoNumber LOTTO_3 = LottoNumber.get(3);
-        final LottoNumber LOTTO_4 = LottoNumber.get(4);
-        final LottoNumber LOTTO_5 = LottoNumber.get(5);
-        final LottoNumber LOTTO_6 = LottoNumber.get(6);
-        final LottoNumber LOTTO_7 = LottoNumber.get(7);
-        final LottoNumbers lottoNumbers = new LottoNumbers(Arrays.asList(LOTTO_1, LOTTO_2, LOTTO_3, LOTTO_4, LOTTO_5, LOTTO_6));
+        final LottoNumbers lottoNumbers = new LottoNumbers(1, 2, 3, 4, 5, 6);
         final Lotto lotto1 = new Lotto(lottoNumbers);
-        final Lotto lotto2 = new Lotto(new LottoNumbers(Arrays.asList(LOTTO_2, LOTTO_3, LOTTO_4, LOTTO_5, LOTTO_6, LOTTO_7)));
+        final Lotto lotto2 = new Lotto(new LottoNumbers(2, 3, 4, 5, 6, 7));
 
         final Lottos lottos = new Lottos(Arrays.asList(lotto1, lotto2));
 

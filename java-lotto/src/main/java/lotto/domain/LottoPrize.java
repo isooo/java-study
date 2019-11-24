@@ -10,7 +10,8 @@ public enum LottoPrize {
     ZERO(0, 0L);
 
     private final int hitCount;
-    private final Long prizeMoney;
+    // TODO 4: 불필요한 오토박싱은 지양
+    private final long prizeMoney;
 
     LottoPrize(final int hitCount, final Long prizeMoney) {
         this.hitCount = hitCount;
