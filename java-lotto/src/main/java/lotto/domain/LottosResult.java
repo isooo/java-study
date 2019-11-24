@@ -24,7 +24,6 @@ public class LottosResult {
     private static Map<LottoPrize, Integer> initialize(final List<LottoPrize> lottoPrizes) {
         final Map<LottoPrize, Integer> map = new HashMap<>();
         for (final LottoPrize lottoPrize : lottoPrizes) {
-            // TODO 1: Map에서 제공되는 API 활용하기 (getOrDefault)
             map.getOrDefault(lottoPrize, 0);
             map.put(lottoPrize, map.getOrDefault(lottoPrize, 0) + 1);
         }
@@ -32,7 +31,6 @@ public class LottosResult {
     }
 
     public Map<LottoPrize, Integer> get() {
-        // TODO 2: 새로운 컬렉션 인스턴스 생성하여 넘기기
         return new HashMap<>(winningStatistics);
     }
 

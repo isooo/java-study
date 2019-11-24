@@ -36,7 +36,6 @@ class LottoNumbersTest {
     @DisplayName("당첨된 번호 개수 구하기")
     @Test
     void calculateCountOfWinningNumbers() {
-        // TODO 7: 아래 테스트가 성공하도록 수정 (가변 인자를 받는 생성자 추가)
         // given
         final LottoNumbers lottoNumbers = new LottoNumbers(1, 2, 3, 4, 5, 6);
         final LottoNumbers winningLottoNumbers = new LottoNumbers(2, 3, 4, 5, 6, 7);

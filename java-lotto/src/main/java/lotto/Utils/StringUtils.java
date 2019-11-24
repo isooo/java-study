@@ -1,4 +1,3 @@
-// TODO 6: 패키지 명은 소문자로
 package lotto.utils;
 
 public class StringUtils {
