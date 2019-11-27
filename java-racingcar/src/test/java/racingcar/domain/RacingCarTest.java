@@ -10,7 +10,7 @@ class RacingCarTest {
     void createRacingCar() {
         // given
         // when
-        final RacingCar racingCar = new RacingCar(1, "test");
+        final RacingCar racingCar = new RacingCar(1, "test", new RandomMovingPolicy());
 
         // then
         assertThat(racingCar.getName()).isEqualTo("test");
@@ -21,10 +21,10 @@ class RacingCarTest {
     @Test
     void racingCarMoveOnce() {
         // given
-        final RacingCar racingCar = new RacingCar(1, "test");
+        final RacingCar racingCar = new RacingCar(1, "test", () -> true);
 
         // when
-        final RacingCar racingCarAfterMove = racingCar.move(true);
+        final RacingCar racingCarAfterMove = racingCar.move();
 
         // then
         assertThat(racingCarAfterMove.getPosition()).isEqualTo(1);
@@ -34,10 +34,10 @@ class RacingCarTest {
     @Test
     void racingCarMoveNone() {
         // given
-        final RacingCar racingCar = new RacingCar(1, "test");
+        final RacingCar racingCar = new RacingCar(1, "test", () -> false);
 
         // when
-        final RacingCar racingCarAfterMove = racingCar.move(false);
+        final RacingCar racingCarAfterMove = racingCar.move();
 
         // then
         assertThat(racingCarAfterMove.getPosition()).isEqualTo(0);
@@ -47,10 +47,8 @@ class RacingCarTest {
     @Test
     void racingCarMoveThree() {
         // given
-        final RacingCar racingCar = new RacingCar(1, "test");
-
         // when
-        final RacingCar racingCarAfterMove = racingCar.move(true).move(true).move(true);
+        final RacingCar racingCarAfterMove = new RacingCar(2, "test2", 3, new RandomMovingPolicy());
 
         // then
         assertThat(racingCarAfterMove.getPosition()).isEqualTo(3);

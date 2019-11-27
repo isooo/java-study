@@ -3,16 +3,18 @@ package racingcar.domain;
 public class RacingCar {
     private final int id;
     private final String name;
-    private final int position;
+    private int position;
+    private final MovingPolicy movingPolicy;
 
-    RacingCar(final int id, final String name, final int position) {
+    RacingCar(final int id, final String name, final int position, final MovingPolicy movingPolicy) {
         this.id = id;
         this.name = name;
         this.position = position;
+        this.movingPolicy = movingPolicy;
     }
 
-    RacingCar(final int id, final String name) {
-        this(id, name, 0);
+    RacingCar(final int id, final String name, final MovingPolicy movingPolicy) {
+        this(id, name, 0, movingPolicy);
     }
 
     public String getName() {
@@ -23,11 +25,11 @@ public class RacingCar {
         return position;
     }
 
-    public RacingCar move(final boolean isPossible) {
-        if (isPossible) {
-            return new RacingCar(id, name, position + 1);
+    public RacingCar move() {
+        if (movingPolicy.isPossible()) {
+            return new RacingCar(id, name, position + 1, movingPolicy);
         }
-        return new RacingCar(id, name, position);
+        return new RacingCar(id, name, position, movingPolicy);
     }
 
     boolean isWinnerPosition(final int winnerPosition) {

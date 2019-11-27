@@ -1,19 +1,16 @@
 package racingcar.application;
 
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.*;
-import org.junit.jupiter.params.provider.*;
 import racingcar.domain.*;
 
 import java.util.*;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class RacingCarServiceTest {
-    @DisplayName("RacingGame의 race가 정상 동작했을 때 결과 사이즈")
-    @ParameterizedTest
-    @CsvSource(value = {"a:1:1", "a:2:2", "a,b,c:5:5"}, delimiter = ':')
-    void oneRacingCarTwoRounds(final String names, final String totalRound, final String expected) {
+    @DisplayName("race 후 RacingCars 사이즈 테스트")
+    @Test
+    void racingCarsListSize() {
         // given
         final RacingCarService racingCarService = new RacingCarService();
 
