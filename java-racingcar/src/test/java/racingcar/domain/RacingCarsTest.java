@@ -23,57 +23,40 @@ class RacingCarsTest {
                 .isEqualTo(Integer.parseInt(expected));
     }
 
-    @DisplayName("3대의 RacingCar 전부 1회 움직였을 때 position 테스트")
+    @DisplayName("3대의 RacingCar 전부 움직였을 때 position 테스트")
     @Test
-    void allMoveTest() {
+    void moveTest() {
         // given
-        final RacingCars racingCars = new RacingCars(new ArrayList<>(
-                Arrays.asList(
-                        new RacingCar(1, "a"),
-                        new RacingCar(2, "b"),
-                        new RacingCar(3, "c")
-                )
+        final RacingCars racingCars = new RacingCars(Arrays.asList(
+                new RacingCar(1, "a", () -> true),
+                new RacingCar(2, "b", () -> true),
+                new RacingCar(3, "c", () -> true)
         ));
 
         // when
-        final RacingCars racingCarsAfterMove = racingCars.move(() -> true);
-        final List<Integer> positions = racingCarsAfterMove.getRacingCarList().stream()
+        final RacingCars racingCarsAfterMove = racingCars.move();
+        final List<Integer> positionList = racingCarsAfterMove.getRacingCarList().stream()
                 .map(racingCar -> racingCar.getPosition())
                 .collect(Collectors.toList());
 
         // then
-        final boolean result = positions.stream()
+        final boolean result = positionList.stream()
                 .allMatch(position -> position == 1);
         assertThat(result).isEqualTo(true);
     }
 
-    @DisplayName("가장 큰 포지션이 3일 때 max position 구하기")
+    @DisplayName("3대의 RacingCar 모두 움직이지 않았을 때 우승자 테스트")
     @Test
-    void getMaxPositionTest() {
+    void winnerTest1() {
         // given
-        final RacingCars racingCars = new RacingCars(new ArrayList<>(
-                Arrays.asList(
-                        new RacingCar(1, "a", 3),
-                        new RacingCar(2, "b", 3),
-                        new RacingCar(3, "c", 2)
-                )
+        final RacingCars racingCars = new RacingCars(Arrays.asList(
+                new RacingCar(1, "a", () -> false),
+                new RacingCar(2, "b", () -> false),
+                new RacingCar(3, "c", () -> false)
         ));
 
         // when
-        final int maxPosition = racingCars.getMaxPosition();
-
-        // then
-        assertThat(maxPosition).isEqualTo(3);
-    }
-
-    @DisplayName("3대의 RacingCar 모두 움직이지 않았을 때 우승자 테스트")
-    @Test
-    void winnerTestWhenAllRacingCarsSamePosition() {
-        // given
-        final RacingCars racingCars = new RacingCars("a,b,c");
-
-        // when
-        final List<String> winners = racingCars.move(() -> false).getWinners();
+        final List<String> winners = racingCars.move().getWinners();
 
         // then
         assertThat(winners.toArray()).isEqualTo(new String[]{"a", "b", "c"});
@@ -83,16 +66,14 @@ class RacingCarsTest {
     @Test
     void winnerPositionTest() {
         // given
-        final RacingCars racingCars = new RacingCars(new ArrayList<>(
-                Arrays.asList(
-                        new RacingCar(1, "a", 3),
-                        new RacingCar(2, "b", 3),
-                        new RacingCar(3, "c", 1)
-                )
+        final RacingCars racingCars = new RacingCars(Arrays.asList(
+                new RacingCar(1, "a", () -> true),
+                new RacingCar(2, "b", () -> true),
+                new RacingCar(3, "c", () -> false)
         ));
 
         // when
-        final List<String> winners = racingCars.getWinners();
+        final List<String> winners = racingCars.move().getWinners();
 
         // then
         assertThat(winners.toArray()).isEqualTo(new String[]{"a", "b"});
