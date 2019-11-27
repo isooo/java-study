@@ -18,9 +18,9 @@ class RacingCarServiceTest {
         final RacingCarService racingCarService = new RacingCarService();
 
         // when
-        final List<RacingCars> racingCarsByRound = racingCarService.race(names, Integer.parseInt(totalRound));
+        final RacingResult racingResult = racingCarService.race(names, Integer.parseInt(totalRound));
 
         // then
-        assertThat(racingCarsByRound.size()).isEqualTo(Integer.parseInt(expected));
+        assertThat(racingResult.getRacingCarsByRound().size()).isEqualTo(Integer.parseInt(expected));
     }
 }
