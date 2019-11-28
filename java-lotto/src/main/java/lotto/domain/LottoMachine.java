@@ -10,7 +10,7 @@ public class LottoMachine {
 
     static {
         LOTTO_NUMBERS = IntStream.rangeClosed(LottoNumber.MIN_NUMBER, LottoNumber.MAX_NUMBER)
-                .mapToObj(value -> LottoNumber.get(value))
+                .mapToObj(LottoNumber::get)
                 .collect(Collectors.toList());
     }
 

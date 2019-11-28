@@ -20,8 +20,8 @@ public class LottoService {
 
     private LottoNumbers getWinningLotto(final String winningNumbers) {
         return new LottoNumbers(Arrays.stream(winningNumbers.split(SEPARATE_SYMBOL))
-                .map(s -> Integer.parseInt(s))
-                .map(value -> LottoNumber.get(value))
+                .map(Integer::parseInt)
+                .map(LottoNumber::get)
                 .collect(Collectors.toList()));
     }
 }

@@ -23,10 +23,13 @@ public class LottosResult {
 
     private static Map<LottoPrize, Integer> initialize(final List<LottoPrize> lottoPrizes) {
         final Map<LottoPrize, Integer> map = new HashMap<>();
-        for (final LottoPrize lottoPrize : lottoPrizes) {
-            map.getOrDefault(lottoPrize, 0);
-            map.put(lottoPrize, map.getOrDefault(lottoPrize, 0) + 1);
+        for (final LottoPrize lottoPrize : LottoPrize.values()) {
+            final long count = lottoPrizes.stream()
+                    .filter(rank -> rank == lottoPrize)
+                    .count();
+            map.put(lottoPrize, (int) (map.getOrDefault(lottoPrize, 0) + count));
         }
+
         return map;
     }
 
