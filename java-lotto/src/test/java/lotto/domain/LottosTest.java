@@ -19,7 +19,7 @@ class LottosTest {
         final Lottos lottos = new Lottos(Arrays.asList(lotto1, lotto2));
 
         // when
-        final LottosResult lottosResult = lottos.calculateWinningStatistics(lottoNumbers);
+        final LottosResult lottosResult = lottos.calculateWinningStatistics(lottoNumbers, bonusNumber);
 
         // then
         assertThat(lottosResult.getRoi()).isEqualTo(1000075);

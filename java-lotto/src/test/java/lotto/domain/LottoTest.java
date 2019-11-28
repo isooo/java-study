@@ -26,6 +26,6 @@ class LottoTest {
         final LottoPrize rank = lotto.calculateWinningStatistics(winningLottoNumbers);
 
         // then
-        assertThat(rank).isSameAs(LottoPrize.SECOND);
+        assertThat(rank).isSameAs(LottoPrize.THIRD);
     }
 }

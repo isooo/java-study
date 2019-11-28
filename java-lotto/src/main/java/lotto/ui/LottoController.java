@@ -10,7 +10,8 @@ public class LottoController {
         final Lottos lottos = lottoService.lottoPurchase(amount);
         ResultView.printLottos(lottos);
         final String winningNumbers = InputView.getWinningNumbers();
-        final LottosResult winningStatistics = lottoService.getWinningStatistics(lottos, winningNumbers);
+        final String bonusNumber = InputView.getBonusNumber();
+        final LottosResult winningStatistics = lottoService.getWinningStatistics(lottos, winningNumbers, bonusNumber);
         ResultView.printStatistics(winningStatistics);
     }
 }

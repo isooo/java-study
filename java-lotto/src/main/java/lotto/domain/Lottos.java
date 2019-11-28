@@ -19,9 +19,11 @@ public class Lottos {
         return this.lottos.size();
     }
 
-    public LottosResult calculateWinningStatistics(final LottoNumbers winningLottoNumbers) {
+    public LottosResult calculateWinningStatistics(final LottoNumbers winningLottoNumbers, final LottoNumber bonusLottoNumber) {
+        final boolean matchBonus = this.lottos.stream()
+                .anyMatch(lotto -> lotto.contains(bonusLottoNumber));
         final List<LottoPrize> lottoPrizes = this.lottos.stream()
-                .map(lotto -> lotto.calculateWinningStatistics(winningLottoNumbers))
+                .map(lotto -> lotto.calculateWinningStatistics(winningLottoNumbers, matchBonus))
                 .collect(Collectors.toList());
         return LottosResult.of(lottoPrizes);
     }

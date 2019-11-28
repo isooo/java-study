@@ -15,8 +15,12 @@ public class Lotto {
         return this.lottoNumbers;
     }
 
-    public LottoPrize calculateWinningStatistics(final LottoNumbers winningLottoNumbers) {
+    public boolean contains(final LottoNumber bonusLottoNumber) {
+        return this.lottoNumbers.contains(bonusLottoNumber);
+    }
+
+    public LottoPrize calculateWinningStatistics(final LottoNumbers winningLottoNumbers, final boolean matchBonus) {
         final long count = this.lottoNumbers.calculateCountOfWinningNumbers(winningLottoNumbers);
-        return LottoPrize.of(count);
+        return LottoPrize.of(count, matchBonus);
     }
 }

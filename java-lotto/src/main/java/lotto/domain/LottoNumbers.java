@@ -31,11 +31,11 @@ public class LottoNumbers {
 
     public long calculateCountOfWinningNumbers(final LottoNumbers winningLottoNumbers) {
         return this.values.stream()
-                .filter(number -> winningLottoNumbers.isContains(number))
+                .filter(number -> winningLottoNumbers.contains(number))
                 .count();
     }
 
-    private boolean isContains(final LottoNumber number) {
+    boolean contains(final LottoNumber number) {
         return this.values.contains(number);
     }
 }

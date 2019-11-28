@@ -12,11 +12,11 @@ class LottosResultTest {
     @Test
     void name() {
         // given
-        final long expected = (LottoPrize.FIRST.getPrizeMoney() + (LottoPrize.FOURTH.getPrizeMoney() * 2)) / 4000;
+        final long expected = (LottoPrize.FIRST.getPrizeMoney() + (LottoPrize.FIFTH.getPrizeMoney() * 2)) / 4000;
 
         // when
         final LottosResult lottosResult = LottosResult.of(
-                Arrays.asList(LottoPrize.FOURTH, LottoPrize.FIRST, LottoPrize.ZERO, LottoPrize.FOURTH)
+                Arrays.asList(LottoPrize.FIFTH, LottoPrize.FIRST, LottoPrize.ZERO, LottoPrize.FIFTH)
         );
 
         // then
