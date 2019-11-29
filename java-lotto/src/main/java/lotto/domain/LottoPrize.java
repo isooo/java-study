@@ -23,7 +23,7 @@ public enum LottoPrize {
             return SECOND;
         }
         return Arrays.stream(LottoPrize.values())
-                .filter(rank -> rank.hitCount == value)
+                .filter(rank -> rank != SECOND && rank.hitCount == value)
                 .findFirst()
                 .orElse(ZERO);
     }
